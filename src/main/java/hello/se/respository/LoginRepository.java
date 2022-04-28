@@ -1,17 +1,14 @@
 package hello.se.respository;
 
-import hello.se.domain.*;
-import lombok.RequiredArgsConstructor;
-import net.bytebuddy.implementation.bind.annotation.This;
+import hello.se.domain.Login;
+import hello.se.domain.LoginDTO;
+import hello.se.domain.ResTable;
+import hello.se.domain.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
 
 @Repository
 public class LoginRepository {
