@@ -12,7 +12,6 @@ import java.util.List;
 public class CustomerRepository {
     @PersistenceContext
     EntityManager em;
-    LoginDTO loginDTO = new LoginDTO();
 
     public Customer save(Customer customer) {
         customer.setName(customer.getName());
