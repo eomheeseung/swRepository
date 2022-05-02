@@ -1,11 +1,11 @@
 package hello.se.RelationTest;
 
-import hello.se.domain.Customer;
-import hello.se.domain.ResTable;
-import hello.se.domain.Reservation;
-import hello.se.respository.CustomerRepository;
-import hello.se.respository.ReservationRepository;
-import hello.se.respository.ResTableRepository;
+import hello.se.domain.DBdata.Customer;
+import hello.se.domain.DBdata.ResTable;
+import hello.se.domain.DBdata.Reservation;
+import hello.se.domain.respository.CustomerRepository;
+import hello.se.domain.respository.ReservationRepository;
+import hello.se.domain.respository.ResTableRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
