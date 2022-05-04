@@ -20,7 +20,7 @@ import java.util.List;
 @SpringBootTest
 @Transactional
 @Rollback(true)
-public class DataTest {
+public class ReservationTest {
 
     @Autowired
     ResTableRepository tableRepository;
