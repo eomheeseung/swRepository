@@ -107,7 +107,7 @@ public class LoginRepository {
      * date, time 검증
      */
     private boolean timeValidation(Reservation reservation, Reservation target) {
-        if (reservation.getDate().isEqual(target.getDate())) {
+        if (reservation.getDate().equals(target.getDate())) {
             if (reservation.getTime().isEqual(target.getTime())) {
                 return false;
             }

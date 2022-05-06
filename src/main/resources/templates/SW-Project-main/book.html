@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <!-- Basic -->
@@ -152,19 +152,19 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form_container">
-            <form action="">
+            <form action="" th:action="@{/book}" th:method="post" th:object="${reservation}">
               <div>
-                <input type="text" class="form-control" placeholder="이름" />
+                <input type="text" class="form-control" placeholder="이름" th:field="*{name}"/>
               </div>
               <div>
-                <input type="text" class="form-control" placeholder="전화번호" />
+                <input type="text" class="form-control" placeholder="전화번호" th:field="*{phoneNumber}"/>
               </div>
               <div>
-                <input type="email" class="form-control" placeholder="이메일" />
+                <input type="email" class="form-control" placeholder="이메일" th:field="*{email}"/>
               </div>
               <div>
                 <select class="form-control nice-select wide">
-                  <option value="" disabled selected>
+                  <option value="" disabled selected th:value="*{covers}">
                     인원 수
                   </option>
                   <option value="2">
@@ -180,12 +180,13 @@
                     5명
                   </option>
                 </select>
+
               </div>
               <div>
-                <input type="date" class="form-control">
+                <input type="date" class="form-control" th:field="*{date}">
               </div>
               <div class="btn_box">
-                <button>
+                <button type="submit">
                   예약하기
                 </button>
               </div>
