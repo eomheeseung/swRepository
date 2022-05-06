@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 @SpringBootTest
 @Transactional
-@Rollback()
+@Rollback
 public class LoginTest {
     @Autowired
     LoginRepository loginRepository;

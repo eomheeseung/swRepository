@@ -5,7 +5,6 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ResTable")
 @Data
 //레스토랑 테이블
 public class ResTable {
