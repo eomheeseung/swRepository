@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -56,14 +57,14 @@ public class LoginTest {
         user2 = loginRepository.save("apple", "apple!","김철수","010-2222-1111");
 
         Reservation reservation1 = new Reservation(1, 2,
-                LocalDate.of(2022, 05, 30),
+                new Date(2022,05,30),
                 LocalDateTime.of(2022, 05, 31, 12, 00),
                 1, 1,
                 LocalDateTime.of(2022, 05, 31, 13, 00));
         user1.setReservation(reservation1);
 
         Reservation reservation2 = new Reservation(2, 2,
-                LocalDate.of(2022, 05, 31),
+                new Date(2022,05,31),
                 LocalDateTime.of(2022, 05, 31, 11, 00),
                 2, 2,
                 LocalDateTime.of(2022, 05, 31, 13, 00));
@@ -85,14 +86,14 @@ public class LoginTest {
         user2 = loginRepository.save("apple", "apple!","김철수","010-2222-1111");
 
         reservation1 = new Reservation(1, 2,
-                LocalDate.of(2022, 05, 30),
+                new Date(2022,05,30),
                 LocalDateTime.of(2022, 05, 31, 12, 00),
                 1, 1,
                 LocalDateTime.of(2022, 05, 31, 13, 00));
         user1.setReservation(reservation1);
 
         reservation2 = new Reservation(2, 2,
-                LocalDate.of(2022, 05, 31),
+                new Date(2022,05,31),
                 LocalDateTime.of(2022, 05, 31, 11, 00),
                 2, 2,
                 LocalDateTime.of(2022, 05, 31, 13, 00));
@@ -114,14 +115,14 @@ public class LoginTest {
         user2 = loginRepository.save("apple", "apple!","김철수","010-2222-1111");
 
         reservation1 = new Reservation(1, 2,
-                LocalDate.of(2022, 05, 30),
+                new Date(2022,05,30),
                 LocalDateTime.of(2022, 05, 31, 12, 00),
                 1, 1,
                 LocalDateTime.of(2022, 05, 31, 13, 00));
         user1.setReservation(reservation1);
 
         reservation2 = new Reservation(2, 2,
-                LocalDate.of(2022, 05, 31),
+                new Date(2022,05,31),
                 LocalDateTime.of(2022, 05, 31, 11, 00),
                 2, 2,
                 LocalDateTime.of(2022, 05, 31, 13, 00));
