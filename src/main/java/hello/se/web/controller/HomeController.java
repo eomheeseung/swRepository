@@ -17,24 +17,27 @@ public class HomeController {
         return "SW-Project-main/index";
     }
 
-    @GetMapping("/index")
-    public String homeView2() {
-        log.info("click menu to index page");
-        return "SW-Project-main/index";
-    }
-
     @GetMapping("/menu")
     public String menuView() {
+        log.info("menu page");
         return "SW-Project-main/menu";
     }
 
     @GetMapping("/book")
     public String bookView() {
+        log.info("book page");
         return "SW-Project-main/book";
     }
 
     @GetMapping("/about")
     public String aboutView() {
+        log.info("about page");
         return "SW-Project-main/about";
+    }
+
+    @GetMapping("/login_signup")
+    public String loginView() {
+        log.info("about page");
+        return "SW-Project-main/login_signup";
     }
 }
