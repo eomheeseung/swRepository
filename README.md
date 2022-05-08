@@ -17,7 +17,8 @@ DB Table과 java class를 매핑, query는 JPQL을 사용
 
 **5월 8일**
 회원가입하면 DB에 다 들어가고, 로그인도 가능
-(problem) 
+
+(problem)
 1. 로그인에 실패하고 null을 반환한 error페이지
 2. 로그인을 성공한 페이지
 3. 로그인을 하고 세션 제어(상태를 어떻게 유지할 것인가?)
