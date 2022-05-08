@@ -65,4 +65,8 @@ public class Reservation {
         this.customer_id = customer_id;
         this.arrivalTime = arrivalTime;
     }
+
+    public void setResTable(ResTable resTable) {
+        this.resTable = resTable;
+    }
 }

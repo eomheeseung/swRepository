@@ -21,4 +21,8 @@ public class ResTable {
 
     @OneToOne(mappedBy = "resTable")
     private Reservation reservation;
+
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
+    }
 }
