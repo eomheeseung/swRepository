@@ -5,12 +5,15 @@ import hello.se.web.Form.LoginForm;
 import hello.se.domain.DBdata.ResTable;
 import hello.se.domain.DBdata.Reservation;
 import hello.se.web.Form.LoginValidationForm;
+import org.aspectj.weaver.ast.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -23,6 +26,7 @@ public class LoginRepository {
     CustomerRepository customerRepository;
     private Login findCustomer;
 
+
     @Autowired
     public LoginRepository(LoginForm loginForm,
                            ReservationRepository reservationRepository,
@@ -33,7 +37,7 @@ public class LoginRepository {
     }
 
     //테스트용
-    public Login save(String id, String password,String username,String phoneNumber) {
+    public Login save(String id, String password, String username, String phoneNumber) {
         loginForm.setId(id);
         loginForm.setPassword(password);
         loginForm.setUsername(username);
@@ -48,6 +52,15 @@ public class LoginRepository {
 
         em.persist(login);
         return login;
+    }
+
+    public void addAdmin() {
+        Login admin = new Login();
+        admin.setId("test");
+        admin.setPassword("1234");
+        admin.setUsername("관리자");
+        admin.setPhoneNumber("010-1111-1111");
+        em.persist(admin);
     }
 
     //웹용
@@ -76,19 +89,31 @@ public class LoginRepository {
         return em.find(Login.class, id);
     }
 
+    //모든 로그인 정보를 리스트로 반환
+    public List<Login> findAll() {
+        return em.createQuery("select l from Login l ", Login.class)
+                .getResultList();
+    }
+
+    //DB에 저장된 id로 조회
+    public Optional<Login> findByLoginId(String loginId) {
+        return findAll().stream()
+                .filter(l -> l.getId().equals(loginId))
+                .findFirst();
+    }
+
     //테이블의 번호를 바꿈
     public Login modifyTableNumber(String id, Reservation newReservation, ResTable resTable) {
         findCustomer = findFromDB(id);
         Reservation findRes = findCustomer.getReservation();
 
-        if (timeValidation(findCustomer.getReservation(),newReservation)
+        if (timeValidation(findCustomer.getReservation(), newReservation)
                 && isCovers(findCustomer.getReservation(), resTable)) {
             if (!findRes.getTable_id().equals(newReservation.getTable_id())) {
                 findCustomer.getReservation().setResTable(resTable);
 //                findRes.setTable_id(newReservation.getTable_id());
             }
         }
-
         return findCustomer;
     }
 
@@ -97,13 +122,12 @@ public class LoginRepository {
         findCustomer = findFromDB(id);
         Reservation findRes = findCustomer.getReservation();
 
-        if (timeValidation(findCustomer.getReservation(),newReservation)
+        if (timeValidation(findCustomer.getReservation(), newReservation)
                 && isCovers(findCustomer.getReservation(), resTable)) {
             if (!findRes.getTable_id().equals(newReservation.getTable_id())) {
                 findRes.setDate(newReservation.getDate());
             }
         }
-
         return findCustomer;
     }
 

@@ -3,13 +3,19 @@ package hello.se.domain.DBdata;
 import hello.se.web.Form.LoginForm;
 import lombok.Data;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.*;
+import java.security.Key;
 
 @Entity
 @Data
 @Table(name = "Login")
 public class Login {
     @Id
+    @GeneratedValue
+    @Column(name = "key")
+    private Long key;
+
     @Column(name = "login_id", nullable = false)
     private String id;
 

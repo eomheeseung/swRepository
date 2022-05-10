@@ -14,4 +14,9 @@ public class LoginValidationForm {
     @NotEmpty(message = "password는 필수 입력입니다.")
     private String password;
 
+    private Long key= Long.valueOf(1);
+
+    public Long increaseKey() {
+        return key++;
+    }
 }

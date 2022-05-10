@@ -1,20 +1,38 @@
 package hello.se.web.controller;
 
 import hello.se.domain.DBdata.Reservation;
+import hello.se.domain.respository.LoginRepository;
 import hello.se.web.Form.LoginForm;
 import hello.se.web.Form.LoginValidationForm;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import javax.annotation.PostConstruct;
 
 @Controller
 @Slf4j
 public class OnlyViewController {
+    private LoginRepository loginRepository;
+
+    @Autowired
+    public OnlyViewController(LoginRepository loginRepository) {
+        this.loginRepository = loginRepository;
+    }
 
     @GetMapping()
     public String homeView() {
         log.info("first page");
+        return "SW-Project-main/index";
+    }
+
+    @GetMapping("/actionLogin")
+    public String loginAfterView() {
+        log.info("loginAfter page");
         return "SW-Project-main/index";
     }
 
