@@ -79,7 +79,6 @@ public class OnlyViewController {
         model.addAttribute("login", currentUser);
         return "SW-Project-main/loginAbout";
     }
-
     @GetMapping("/book/{key}")
     public String addLoginReservation(@PathVariable Long key, Model model,HttpServletRequest request) {
         HttpSession session = request.getSession();
