@@ -97,17 +97,4 @@ public class OnlyViewController {
         model.addAttribute("loginForm", new LoginForm());
         return "SW-Project-main/logout_signup";
     }
-
-
-    /*@GetMapping("/login/enter")
-    public String loginEnter() {
-        log.info("login enter");
-        return "SW-Project-main/";
-    }
-
-    @GetMapping("/login/register")
-    public String loginRegister() {
-        log.info("login register");
-        return "SW-Project-main/";
-    }*/
 }
