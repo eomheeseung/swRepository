@@ -4,17 +4,17 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+
+//예약정보
 @Entity
 @Data
-//예약정보
 public class Reservation {
     @Id
     @GeneratedValue
-    @Column(name = "oid", nullable = false)
+    @Column(name = "res_oid")
     private Integer oid;
 
     @Column(name = "name")
@@ -45,8 +45,11 @@ public class Reservation {
     @Column(name = "arrivalTime")
     private LocalDateTime arrivalTime;
 
-    @OneToOne(mappedBy = "reservation")
+//    @OneToOne(mappedBy = "reservation")
+    @ManyToOne
+    @JoinColumn(name = "login_key")
     private Login login;
+
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "resTable_oid")

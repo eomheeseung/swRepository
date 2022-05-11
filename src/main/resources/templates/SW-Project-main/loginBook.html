@@ -11,7 +11,9 @@
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <link rel="shortcut icon" href="images/favicon.png" type="">
+  <link rel="shortcut icon" href="images/favicon.png"
+        th:href="@{~/images/favicon.png}"
+        type="">
 
   <title> Italic Time - Book Table </title>
 
@@ -48,9 +50,9 @@
     </div>
     <!-- 헤더  -->
     <header class="header_section">
-      <div class="container" >
+      <div class="container" th:object="${login}">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="/index" >
+          <a class="navbar-brand" href="/index" th:href="@{|/index/${login.key}|}">
             <span>
               ItalicTime
             </span>
@@ -63,16 +65,16 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav  mx-auto ">
               <li class="nav-item active">
-                <a class="nav-link" href="/" >Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/" th:href="@{|/index/${login.key}|}">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/menu" >Menu</a>
+                <a class="nav-link" href="/menu" th:href="@{|/menu/${login.key}|}">Menu</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/about" >About</a>
+                <a class="nav-link" href="/about" th:href="@{|/about/${login.key}|}">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/book" >Book Table</a>
+                <a class="nav-link" href="/book" th:href="@{|/book/${login.key}|}">Book Table</a>
               </li>
             </ul>
             <div class="user_option">
@@ -138,7 +140,7 @@
                   <i class="fa fa-search" aria-hidden="true"></i>
                 </button>
               </form>
-              <a href="/login"  class="order_online">
+              <a href="/login" th:href="@{|/login/${login.key}|}" class="order_online">
                 Login
               </a>
             </div>

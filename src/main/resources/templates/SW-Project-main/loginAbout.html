@@ -5,22 +5,23 @@
   <!-- Basic -->
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Mobile Metas -->
+  <!-- 모바일 전환 -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
+ <!-- 사이트 전환 -->
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <link rel="shortcut icon" href="images/favicon.png" type="">
+  <link rel="shortcut icon" href="images/favicon.png"
+        th:href="@{~/images/favicon.png}"
+        type="">
 
-  <title> Italic Time - Book Table </title>
+  <title> Italic Time - About </title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css"
-  th:href="@{~/css/bootstrap.css}"
-  />
+        th:href="@{~/css/bootstrap.css}"/>
 
-  <!--owl slider stylesheet -->
+  <!--owl slider stylesheet (슬라이드)-->
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
   <!-- nice select  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ==" crossorigin="anonymous" />
@@ -48,9 +49,9 @@
     </div>
     <!-- 헤더  -->
     <header class="header_section">
-      <div class="container" >
+      <div class="container" th:object="${login}">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="/index" >
+          <a class="navbar-brand" href="/index" th:href="@{|/index/${login.key}|}">
             <span>
               ItalicTime
             </span>
@@ -63,16 +64,16 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav  mx-auto ">
               <li class="nav-item active">
-                <a class="nav-link" href="/" >Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/" th:href="@{|/index/${login.key}|}">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/menu" >Menu</a>
+                <a class="nav-link" href="/menu" th:href="@{|/menu/${login.key}|}">Menu</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/about" >About</a>
+                <a class="nav-link" href="/about" th:href="@{|/about/${login.key}|}">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/book" >Book Table</a>
+                <a class="nav-link" href="/book" th:href="@{|/book/${login.key}|}">Book Table</a>
               </li>
             </ul>
             <div class="user_option">
@@ -138,7 +139,7 @@
                   <i class="fa fa-search" aria-hidden="true"></i>
                 </button>
               </form>
-              <a href="/login"  class="order_online">
+              <a href="/login" th:href="@{|/login/${login.key}|}" class="order_online">
                 Login
               </a>
             </div>
@@ -149,70 +150,42 @@
     <!-- 헤더 끝 -->
   </div>
 
-  <!-- 예약 -->
-  <section class="book_section layout_padding">
-    <div class="container">
-      <div class="heading_container">
-        <h2>
-          Book Table
-        </h2>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form_container">
-            <form action="" th:action="@{/book}" th:method="post" th:object="${reservation}">
-              <div>
-                <input type="text" class="form-control" placeholder="이름" th:field="*{name}"/>
-              </div>
-              <div>
-                <input type="text" class="form-control" placeholder="전화번호" th:field="*{phoneNumber}"/>
-              </div>
-              <div>
-                <input type="email" class="form-control" placeholder="이메일" th:field="*{email}"/>
-              </div>
-              <div>
-                <select class="form-control nice-select wide">
-                  <option value="" disabled selected th:value="*{covers}">
-                    인원 수
-                  </option>
-                  <option value="2">
-                    2명
-                  </option>
-                  <option value="3">
-                    3명
-                  </option>
-                  <option value="4">
-                    4명
-                  </option>
-                  <option value="5">
-                    5명
-                  </option>
-                </select>
+  <!-- 추가사항 -->
 
-              </div>
-              <div>
-                <input type="date" class="form-control" th:field="*{date}">
-              </div>
-              <div class="btn_box">
-                <button type="submit">
-                  예약하기
-                </button>
-              </div>
-            </form>
+  <section class="about_section layout_padding">
+    <div class="container  ">
+
+      <div class="row">
+        <div class="col-md-6 ">
+          <div class="img-box">
+            <img src="images/chef.jpg" th:src="@{~/images/chef.jpg}" alt="">
           </div>
         </div>
         <div class="col-md-6">
-          <div class="map_container ">
-            <div id="googleMap"></div>
+          <div class="detail-box">
+            <div class="heading_container">
+              <h2>
+                Think our customer
+              </h2>
+            </div>
+            <p>
+              ItalicTime's dishes are inspired by Italian traditions and techniques.<br>
+              Here we offer our unique understanding of authentic Italian cuisine,
+              introducing its true values through each menu.
+            </p>
+            <a href="">
+              더보기
+            </a>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- 예약 끝 -->
 
-  <!-- 하단 -->
-  <footer class="footer_section">
+  <!-- 추가사항 끝 -->
+
+   <!-- 하단 -->
+   <footer class="footer_section">
     <div class="container">
       <div class="row">
         <div class="col-md-4 footer-col">
