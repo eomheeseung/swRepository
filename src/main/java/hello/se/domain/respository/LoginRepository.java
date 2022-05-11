@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -32,8 +33,18 @@ public class LoginRepository {
         this.customerRepository = customerRepository;
     }
 
+    //관리자 등록
+    public void init() {
+        Login admin = new Login();
+        admin.setId("test");
+        admin.setPassword("1234");
+        admin.setUsername("관리자");
+        admin.setPhoneNumber("010-1111-1111");
+        em.persist(admin);
+    }
+
     //테스트용
-    public Login save(String id, String password,String username,String phoneNumber) {
+    public Login save(String id, String password, String username, String phoneNumber) {
         loginForm.setId(id);
         loginForm.setPassword(password);
         loginForm.setUsername(username);
@@ -72,16 +83,38 @@ public class LoginRepository {
         return null;
     }
 
+    //id로 단건 조회
     public Login findFromDB(String id) {
         return em.find(Login.class, id);
     }
+
+    //해당 id로 모두 조회
+    public List<Login> findAll(String id) {
+        return em.createQuery("select l from Login l where l.id =: id", Login.class)
+                .setParameter("id", id)
+                .getResultList();
+    }
+
+    //Id로 DB에서 select한 쿼리들을 찾음
+    public Optional<Login> findById(String id) {
+        return findAll(id).stream().filter(l -> l.getId().equals(id))
+                .findFirst();
+    }
+
+    //key로 해당 user 단건 조회
+    public Login findByKey(Long key) {
+        return em.find(Login.class, key);
+    }
+
+
+
 
     //테이블의 번호를 바꿈
     public Login modifyTableNumber(String id, Reservation newReservation, ResTable resTable) {
         findCustomer = findFromDB(id);
         Reservation findRes = findCustomer.getReservation();
 
-        if (timeValidation(findCustomer.getReservation(),newReservation)
+        if (timeValidation(findCustomer.getReservation(), newReservation)
                 && isCovers(findCustomer.getReservation(), resTable)) {
             if (!findRes.getTable_id().equals(newReservation.getTable_id())) {
                 findCustomer.getReservation().setResTable(resTable);
@@ -97,7 +130,7 @@ public class LoginRepository {
         findCustomer = findFromDB(id);
         Reservation findRes = findCustomer.getReservation();
 
-        if (timeValidation(findCustomer.getReservation(),newReservation)
+        if (timeValidation(findCustomer.getReservation(), newReservation)
                 && isCovers(findCustomer.getReservation(), resTable)) {
             if (!findRes.getTable_id().equals(newReservation.getTable_id())) {
                 findRes.setDate(newReservation.getDate());
