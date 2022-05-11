@@ -26,4 +26,5 @@ public class LoginForm {
         id = null;
         password = null;
     }
+    //
 }
