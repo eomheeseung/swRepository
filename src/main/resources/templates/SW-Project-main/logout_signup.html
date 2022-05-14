@@ -1,8 +1,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <link rel="shortcut icon" href="images/favicon.png" type="">
+        <link rel="shortcut icon"
+              th:href="@{~/images/favicon.png}"
+              href="images/favicon.png" type="">
         <title>Login & Sign Up</title>
-        <link rel="stylesheet" href="css/loginstyle.css">
+        <link rel="stylesheet"
+              th:href="@{~/css/loginstyle.css}"
+              href="css/loginstyle.css">
     </head>
     <body>
         <div class="wrap">

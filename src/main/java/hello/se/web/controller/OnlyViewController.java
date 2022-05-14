@@ -2,21 +2,28 @@ package hello.se.web.controller;
 
 import hello.se.domain.DBdata.Login;
 import hello.se.domain.DBdata.Reservation;
-import hello.se.web.Form.LoginForm;
+import hello.se.domain.respository.ResTableRepository;
 import hello.se.web.Form.LoginValidationForm;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @Controller
 @Slf4j
 public class OnlyViewController {
+    private ResTableRepository resTableRepository;
+
+    @Autowired
+    public OnlyViewController(ResTableRepository resTableRepository) {
+        this.resTableRepository = resTableRepository;
+        resTableRepository.init();
+    }
 
     @GetMapping()
     public String homeView(Model model) {
@@ -50,7 +57,7 @@ public class OnlyViewController {
     @GetMapping("/login")
     public String loginView(Model model) {
         model.addAttribute("loginValidationForm", new LoginValidationForm());
-        model.addAttribute("loginForm", new LoginForm());
+        model.addAttribute("loginForm", new hello.se.web.Form.LoginForm());
 //        model.addAttribute("login", new Login());
         log.info("login page");
         return "SW-Project-main/login_signup";
@@ -79,7 +86,6 @@ public class OnlyViewController {
         model.addAttribute("login", currentUser);
         return "SW-Project-main/loginAbout";
     }
-
     @GetMapping("/book/{key}")
     public String addLoginReservation(@PathVariable Long key, Model model,HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -94,7 +100,8 @@ public class OnlyViewController {
         HttpSession session = request.getSession();
         Login currentUser = (Login) session.getAttribute("user");
         model.addAttribute("loginValidationForm", new LoginValidationForm());
-        model.addAttribute("loginForm", new LoginForm());
+        model.addAttribute("loginForm", new hello.se.web.Form.LoginForm());
         return "SW-Project-main/logout_signup";
     }
+    //
 }

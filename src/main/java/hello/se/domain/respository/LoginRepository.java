@@ -1,7 +1,6 @@
 package hello.se.domain.respository;
 
 import hello.se.domain.DBdata.Login;
-import hello.se.web.Form.LoginForm;
 import hello.se.domain.DBdata.ResTable;
 import hello.se.domain.DBdata.Reservation;
 import hello.se.web.Form.LoginValidationForm;
@@ -19,13 +18,13 @@ import java.util.Optional;
 public class LoginRepository {
     @PersistenceContext
     EntityManager em;
-    LoginForm loginForm;
+    hello.se.web.Form.LoginForm loginForm;
     ReservationRepository reservationRepository;
     CustomerRepository customerRepository;
     private Login findCustomer;
 
     @Autowired
-    public LoginRepository(LoginForm loginForm,
+    public LoginRepository(hello.se.web.Form.LoginForm loginForm,
                            ReservationRepository reservationRepository,
                            CustomerRepository customerRepository) {
         this.loginForm = loginForm;
@@ -62,7 +61,7 @@ public class LoginRepository {
     }
 
     //웹용
-    public Login saveWeb(LoginForm loginForm) {
+    public Login saveWeb(hello.se.web.Form.LoginForm loginForm) {
         Login login = new Login();
         login.setLogin(loginForm);
         em.persist(login);
@@ -109,7 +108,7 @@ public class LoginRepository {
 
 
 
-    //테이블의 번호를 바꿈
+    /*//테이블의 번호를 바꿈
     public Login modifyTableNumber(String id, Reservation newReservation, ResTable resTable) {
         findCustomer = findFromDB(id);
         Reservation findRes = findCustomer.getReservation();
@@ -152,12 +151,12 @@ public class LoginRepository {
             }
         }
         return findCustomer;
-    }
+    }*/
 
 
     //covers 검증
     private boolean isCovers(Reservation reservation, ResTable resTable) {
-        if (reservation.getCovers() > resTable.getPlaces()) {
+        if (reservation.getCovers() > resTable.getCovers()) {
             return false;
         }
         return true;

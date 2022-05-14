@@ -6,11 +6,9 @@ import hello.se.web.Form.LoginValidationForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class LoginService {
-    private LoginRepository loginRepository;
+    private final LoginRepository loginRepository;
 
     @Autowired
     public LoginService(LoginRepository loginRepository) {

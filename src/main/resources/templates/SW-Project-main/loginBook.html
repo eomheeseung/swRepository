@@ -42,7 +42,7 @@
 
 </head>
 
-<body class="sub_page">
+<body class="sub_page" th:object="${login}">
 
   <div class="hero_area">
     <div class="bg-box">
@@ -50,7 +50,7 @@
     </div>
     <!-- 헤더  -->
     <header class="header_section">
-      <div class="container" th:object="${login}">
+      <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
           <a class="navbar-brand" href="/index" th:href="@{|/index/${login.key}|}">
             <span>
@@ -78,7 +78,7 @@
               </li>
             </ul>
             <div class="user_option">
-              <a href="" class="user_link">
+              <a href="" class="user_link" th:href="@{|/modify/${login.key}|}">
                 <i class="fa fa-user" aria-hidden="true"></i>
               </a>
               <a class="cart_link" href="#">
@@ -140,8 +140,8 @@
                   <i class="fa fa-search" aria-hidden="true"></i>
                 </button>
               </form>
-              <a href="/login" th:href="@{|/login/${login.key}|}" class="order_online">
-                Login
+              <a href="/login" th:href="@{|/logout/${login.key}|}" class="order_online">
+                LogOut
               </a>
             </div>
           </div>
@@ -162,7 +162,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form_container">
-            <form action="" th:action="@{/book}" th:method="post" th:object="${reservation}">
+            <form action="" th:action="@{|/book/${login.key}|}" th:method="post" th:object="${reservation}">
               <div>
                 <input type="text" class="form-control" placeholder="이름" th:field="*{name}"/>
               </div>
@@ -196,7 +196,7 @@
                 <input type="date" class="form-control" th:field="*{date}">
               </div>
               <div class="btn_box">
-                <button type="submit">
+                <button type="submit" th:href="@{|/book/${login.key}|}">
                   예약하기
                 </button>
               </div>
