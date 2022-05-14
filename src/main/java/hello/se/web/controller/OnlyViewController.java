@@ -86,7 +86,6 @@ public class OnlyViewController {
         model.addAttribute("login", currentUser);
         return "SW-Project-main/loginAbout";
     }
-
     @GetMapping("/book/{key}")
     public String addLoginReservation(@PathVariable Long key, Model model,HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -104,4 +103,5 @@ public class OnlyViewController {
         model.addAttribute("loginForm", new hello.se.web.Form.LoginForm());
         return "SW-Project-main/logout_signup";
     }
+    //
 }
