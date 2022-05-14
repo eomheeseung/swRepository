@@ -1,5 +1,6 @@
 package hello.se.domain.respository;
 
+import hello.se.domain.DBdata.Login;
 import hello.se.domain.DBdata.Reservation;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,12 +26,24 @@ public class ReservationRepository {
         return reservation;
     }
 
+    public Reservation bothSaveLogin(Reservation reservation, Login login) {
+        if (reservation.getOid() == null) {
+            reservation.setLogin(login);
+            em.persist(reservation);
+        } else {
+            em.merge(reservation);
+        }
+//        em.persist(reservation);
+        return reservation;
+    }
+
     public Reservation findReservation(int oid) {
         return em.find(Reservation.class, oid);
     }
 
-    public List<Reservation> findAll() {
-        return em.createQuery("select r from Reservation r", Reservation.class)
+    public List<Reservation> findAll(Login login) {
+        return em.createQuery("select r from Reservation r inner join Login l on r.login.key =: key", Reservation.class)
+                .setParameter("key", login.getKey())
                 .getResultList();
     }
 
@@ -58,17 +71,10 @@ public class ReservationRepository {
                 .getResultList();
     }
 
-    public List<Reservation> findForCustomerId(int customerId) {
-        return em.createQuery("select r from Reservation r where r.customer_id = :customerId", Reservation.class)
-                .setParameter("customerId", customerId)
-                .getResultList();
-    }
-
     public List<Reservation> findForTableId(int tableId) {
         return em.createQuery("select r from Reservation r where r.table_id = :tableId", Reservation.class)
                 .setParameter("tableId", tableId)
                 .getResultList();
     }
-
 
 }

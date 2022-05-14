@@ -13,7 +13,7 @@ import java.util.Date;
 @Data
 public class Reservation {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "res_oid")
     private Integer oid;
 
@@ -33,8 +33,8 @@ public class Reservation {
     @Column(name = "table_id")
     private Integer table_id;
 
-    @Column(name = "customer_id")
-    private Integer customer_id;
+    /*@Column(name = "customer_id")
+    private Integer customer_id;*/
 
     @Column(name = "email")
     private String email;
@@ -45,15 +45,13 @@ public class Reservation {
     @Column(name = "arrivalTime")
     private LocalDateTime arrivalTime;
 
-//    @OneToOne(mappedBy = "reservation")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "login_key")
     private Login login;
 
-
-    @OneToOne(cascade = CascadeType.ALL)
+   /* @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "resTable_oid")
-    private ResTable resTable;
+    private ResTable resTable;*/
 
     public Reservation() {
     }
@@ -65,11 +63,12 @@ public class Reservation {
         this.date = date;
         this.time = time;
         this.table_id = table_id;
-        this.customer_id = customer_id;
+//        this.customer_id = customer_id;
         this.arrivalTime = arrivalTime;
     }
 
-    public void setResTable(ResTable resTable) {
-        this.resTable = resTable;
+    public void setLogin(Login login) {
+        this.login = login;
+        login.getReservations().add(this);
     }
 }

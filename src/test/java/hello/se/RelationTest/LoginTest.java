@@ -14,7 +14,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -51,7 +50,7 @@ public class LoginTest {
         Assertions.assertThat(user1.getId()).isEqualTo("test");
     }
 
-    @Test
+    /*@Test
     public void 테이블_번호_바꾸기() throws Exception {
         user1 = loginRepository.save("test", "test!","가나다","010-1111-1111");
         user2 = loginRepository.save("apple", "apple!","김철수","010-2222-1111");
@@ -78,9 +77,9 @@ public class LoginTest {
 
         Login update = loginRepository.modifyTableNumber(user1.getId(), reservation2, savedResTable2);
         Assertions.assertThat(update.getReservation().getResTable().getOid()).isEqualTo(2);
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void date_변경() throws Exception {
         user1 = loginRepository.save("test", "test!","가나다","010-1111-1111");
         user2 = loginRepository.save("apple", "apple!","김철수","010-2222-1111");
@@ -107,9 +106,9 @@ public class LoginTest {
 
         Login update = loginRepository.modifyTableDate(user1.getId(), reservation2, savedResTable2);
         Assertions.assertThat(update.getReservation().getDate()).isEqualTo(reservation2.getDate());
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void time_변경() throws Exception {
         user1 = loginRepository.save("test", "test!","가나다","010-1111-1111");
         user2 = loginRepository.save("apple", "apple!","김철수","010-2222-1111");
@@ -137,6 +136,6 @@ public class LoginTest {
         Login update = loginRepository.modifyTableTime(user1.getId(), reservation2, savedResTable2);
         Assertions.assertThat(update.getReservation().getTime()).isEqualTo(reservation2.getTime());
 
-    }
+    }*/
 }
 

@@ -41,7 +41,7 @@ public class ReservationTest {
 
         //then
         Assertions.assertThat(findTable.getNumber()).isEqualTo(saveTable.getNumber());
-        Assertions.assertThat(findTable.getPlaces()).isEqualTo(saveTable.getPlaces());
+        Assertions.assertThat(findTable.getCovers()).isEqualTo(saveTable.getCovers());
 
     }
 

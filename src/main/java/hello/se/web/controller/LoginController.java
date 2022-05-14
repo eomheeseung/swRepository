@@ -2,22 +2,20 @@ package hello.se.web.controller;
 
 import hello.se.domain.DBdata.Login;
 import hello.se.domain.respository.LoginRepository;
-import hello.se.web.Form.LoginForm;
 import hello.se.web.Form.LoginValidationForm;
 import hello.se.web.service.LoginService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Optional;
 
 @Controller
 @Slf4j
@@ -49,8 +47,15 @@ public class LoginController {
     }
 
     @PostMapping("/login/register")
-    public String addInfo(@ModelAttribute LoginForm loginForm) {
+    public String addInfo(@ModelAttribute hello.se.web.Form.LoginForm loginForm) {
         loginRepository.saveWeb(loginForm);
+        return "redirect:/";
+    }
+
+    @GetMapping("/logout/{key}")
+    public String logout(@PathVariable Long key,HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.removeAttribute("user");
         return "redirect:/";
     }
 }
