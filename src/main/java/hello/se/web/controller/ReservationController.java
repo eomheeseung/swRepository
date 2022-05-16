@@ -45,9 +45,9 @@ public class ReservationController {
     public String addLoginReservation(@PathVariable Long key, @ModelAttribute Reservation reservation, HttpServletRequest request,
                                       RedirectAttributes redirectAttributes) {
         HttpSession session = request.getSession();
-        reservationRepository.save(reservation);
         Login currentUser = (Login) session.getAttribute("user");
-        reservationRepository.bothSaveLogin(reservation, currentUser);
+        reservation.setLoginKey(currentUser.getKey());
+        reservationRepository.save(reservation);
 
         //확인
 //        Reservation reservation1 = currentRes.getReservation();

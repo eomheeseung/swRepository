@@ -4,7 +4,9 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 
 
@@ -25,10 +27,11 @@ public class Reservation {
 
     @Column(name = "date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date date;
+    private LocalDate date;
 
     @Column(name = "time")
-    private LocalDateTime time;
+    @DateTimeFormat(pattern = "HH:mm")
+    private LocalTime time;
 
     @Column(name = "table_id")
     private Integer table_id;
@@ -45,9 +48,8 @@ public class Reservation {
     @Column(name = "arrivalTime")
     private LocalDateTime arrivalTime;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "login_key")
-    private Login login;
+    @Column(name = "login_key")
+    private Long loginKey;
 
    /* @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "resTable_oid")
@@ -56,7 +58,7 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(Integer oid, Integer covers, Date date, LocalDateTime time,
+    public Reservation(Integer oid, Integer covers, LocalDate date, LocalTime time,
                        Integer table_id, Integer customer_id, LocalDateTime arrivalTime) {
         this.oid = oid;
         this.covers = covers;
@@ -67,8 +69,8 @@ public class Reservation {
         this.arrivalTime = arrivalTime;
     }
 
-    public void setLogin(Login login) {
+    /*public void setLogin(Login login) {
         this.login = login;
         login.getReservations().add(this);
-    }
+    }*/
 }

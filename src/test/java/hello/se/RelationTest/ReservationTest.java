@@ -90,13 +90,13 @@ public class ReservationTest {
     public void 예약_조회() throws Exception {
         //given
         Reservation r1 = new Reservation(1, 2,
-                new Date(2022,05,05), LocalDateTime.now(), 1, 1
+                LocalDate.now(), LocalTime.now(), 1, 1
                 , LocalDateTime.of(2022, 05, 31, 13, 00));
         Reservation r2 = new Reservation(2, 3,
-                new Date(2022,05,06), LocalDateTime.now(), 2, 2
+                LocalDate.now(), LocalTime.now(), 2, 2
                 , LocalDateTime.of(2022, 06, 30, 13, 00));
         Reservation r3 = new Reservation(3, 3,
-                new Date(2022,05,06), LocalDateTime.now(), 3, 3
+                LocalDate.now(), LocalTime.now(), 3, 3
                 , LocalDateTime.of(2022, 05, 31, 13, 00));
         //when
         reservationRepository.save(r1);

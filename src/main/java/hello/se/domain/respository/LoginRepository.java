@@ -167,7 +167,7 @@ public class LoginRepository {
      */
     private boolean timeValidation(Reservation reservation, Reservation target) {
         if (reservation.getDate().equals(target.getDate())) {
-            if (reservation.getTime().isEqual(target.getTime())) {
+            if (reservation.getTime().isAfter(target.getTime())) {
                 return false;
             }
         } else {

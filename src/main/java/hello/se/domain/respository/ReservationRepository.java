@@ -26,7 +26,7 @@ public class ReservationRepository {
         return reservation;
     }
 
-    public Reservation bothSaveLogin(Reservation reservation, Login login) {
+    /*public Reservation bothSaveLogin(Reservation reservation, Login login) {
         if (reservation.getOid() == null) {
             reservation.setLogin(login);
             em.persist(reservation);
@@ -35,14 +35,14 @@ public class ReservationRepository {
         }
 //        em.persist(reservation);
         return reservation;
-    }
+    }*/
 
     public Reservation findReservation(int oid) {
         return em.find(Reservation.class, oid);
     }
 
     public List<Reservation> findAll(Login login) {
-        return em.createQuery("select r from Reservation r inner join Login l on r.login.key =: key", Reservation.class)
+        return em.createQuery("select r from Reservation r inner join Login l on r.loginKey =: key", Reservation.class)
                 .setParameter("key", login.getKey())
                 .getResultList();
     }

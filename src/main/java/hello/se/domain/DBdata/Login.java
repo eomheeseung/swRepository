@@ -22,8 +22,8 @@ public class Login {
     @Column(name = "password")
     private String password;
 
-    @OneToMany(mappedBy = "login")
-    private List<Reservation> reservations = new ArrayList<>();
+    /*@OneToMany(mappedBy = "login")
+    private List<Reservation> reservations = new ArrayList<>();*/
 
     @Column(name = "username")
     private String username;
