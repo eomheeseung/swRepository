@@ -1,5 +1,6 @@
 package hello.se.domain.DBdata;
 
+import hello.se.web.Form.LoginForm;
 import hello.se.web.Form.ReservationForm;
 import lombok.Data;
 
@@ -35,7 +36,7 @@ public class Login {
     @JoinColumn(name = "login_id")
     private Customer customer;*/
 
-    public void setLogin(hello.se.web.Form.LoginForm loginForm) {
+    public void setLogin(LoginForm loginForm) {
         this.id = loginForm.getId();
         this.password = loginForm.getPassword();
         this.username = loginForm.getUsername();

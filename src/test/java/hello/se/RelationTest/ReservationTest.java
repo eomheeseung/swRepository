@@ -91,20 +91,20 @@ public class ReservationTest {
         //given
         Reservation r1 = new Reservation(1, 2,
                 LocalDate.now(), LocalTime.now(), 1, 1
-                , LocalDateTime.of(2022, 05, 31, 13, 00));
+                , LocalTime.now());
         Reservation r2 = new Reservation(2, 3,
                 LocalDate.now(), LocalTime.now(), 2, 2
-                , LocalDateTime.of(2022, 06, 30, 13, 00));
+                ,LocalTime.now());
         Reservation r3 = new Reservation(3, 3,
                 LocalDate.now(), LocalTime.now(), 3, 3
-                , LocalDateTime.of(2022, 05, 31, 13, 00));
+                , LocalTime.now());
         //when
         reservationRepository.save(r1);
         reservationRepository.save(r2);
         reservationRepository.save(r3);
         //then
 
-        List<Reservation> forArriveTime = reservationRepository.findForArriveTime(r1.getArrivalTime());
+        List<Reservation> forArriveTime = reservationRepository.findForArriveTime(r1.getEndTime());
         for (Reservation reservation : forArriveTime) {
             System.out.println(reservation);
         }

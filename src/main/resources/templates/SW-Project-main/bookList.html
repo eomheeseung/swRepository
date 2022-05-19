@@ -212,23 +212,23 @@
                 <thead>
                 <tr>
                     <th scope="col">List</th>
-                    <th scope="col" >이름</th>
+                    <th scope="col">이름</th>
                     <th scope="col">테이블 번호</th>
-                    <th scope="col" >전화번호</th>
-                    <th scope="col" >이메일</th>
-                    <th scope="col" >인원수</th>
-                    <th scope="col">예약 날짜 / 시간</th>
+                    <th scope="col">전화번호</th>
+                    <th scope="col">이메일</th>
+                    <th scope="col">인원수</th>
+                    <th scope="col">예약 날짜 / 예약시간 ~ 종료시간</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="book : ${bookList}">
-                    <th scope="row" th:text="${bookStat.index+1}">3</th>
+                    <th scope="row" th:text="${bookStat.index + 1}">3</th>
                     <td th:text="${book.name}">장현석</td>
                     <td th:text="${book.table_id}">1</td>
                     <td th:text="${book.phoneNumber}">010-1111-2222</td>
                     <td th:text="${book.email}">abc@naver.com</td>
                     <td th:text="${book.covers}">3</td>
-                    <td th:text="${book.date}+' / '+${book.time}">2022-05-14</td>
+                    <td th:text="${book.date}+' / '+${book.time}+' ~ '+${book.endTime}">2022-05-14</td>
                 </tr>
                 </tbody>
             </table>
@@ -298,7 +298,8 @@
                             <input type="date" class="form-control" th:field="*{date}">
                         </div>
                         <div>
-                            <input type="time" class="form-control" value="12:00" min="12:00" max="20:00" th:field="*{time}">
+                            <input type="time" class="form-control" value="12:00" min="12:00" max="20:00"
+                                   th:field="*{time}">
                         </div>
                         <div class="btn_box" style="padding: 0 0 35px 0">
                             <button type="submit">수정하기</button>
@@ -307,6 +308,7 @@
                     </form>
                 </div>
             </div>
+
             <div class="col-md-6">
                 <div class="mod_btn_container ">
                     <div class="mod_table_container ">

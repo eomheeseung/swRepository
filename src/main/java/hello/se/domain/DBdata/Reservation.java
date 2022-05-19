@@ -45,8 +45,9 @@ public class Reservation {
     @Column(name = "phoneNumber")
     private String phoneNumber;
 
-    @Column(name = "arrivalTime")
-    private LocalDateTime arrivalTime;
+    @Column(name = "endTime")
+    @DateTimeFormat(pattern = "HH:mm")
+    private LocalTime endTime;
 
     @Column(name = "login_key")
     private Long loginKey;
@@ -62,14 +63,14 @@ public class Reservation {
     }
 
     public Reservation(Integer oid, Integer covers, LocalDate date, LocalTime time,
-                       Integer table_id, Integer customer_id, LocalDateTime arrivalTime) {
+                       Integer table_id, Integer customer_id, LocalTime endTime) {
         this.oid = oid;
         this.covers = covers;
         this.date = date;
         this.time = time;
         this.table_id = table_id;
 //        this.customer_id = customer_id;
-        this.arrivalTime = arrivalTime;
+        this.endTime = endTime;
     }
 
     /*public void setLogin(Login login) {

@@ -1,13 +1,17 @@
 package hello.se.domain.respository;
 
 import hello.se.domain.DBdata.Login;
+import hello.se.domain.DBdata.ResTable;
 import hello.se.domain.DBdata.Reservation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Repository
@@ -22,9 +26,23 @@ public class ReservationRepository {
         } else {
             em.merge(reservation);
         }
-//        em.persist(reservation);
         return reservation;
     }
+
+    /*public void init() {
+        Reservation reservation1 = new Reservation();
+        reservation1.setName("user1");
+        reservation1.setPhoneNumber("010-2222-2222");
+        reservation1.setTime(LocalTime.of(14, 00));
+        reservation1.setEndTime(reservation1.getTime().plusHours(2));
+        reservation1.setCovers(2);
+        reservation1.setEmail("a@a.com");
+        reservation1.setDate(LocalDate.now());
+        reservation1.setError(true);
+        reservation1.setLoginKey(2L);
+        reservation1.setTable_id(1);
+        em.persist(reservation1);
+    }*/
 
     /*public Reservation bothSaveLogin(Reservation reservation, Login login) {
         if (reservation.getOid() == null) {
@@ -65,9 +83,9 @@ public class ReservationRepository {
                 .getResultList();
     }
 
-    public List<Reservation> findForArriveTime(LocalDateTime arrival) {
-        return em.createQuery("select r from Reservation r where r.arrivalTime = :arrival", Reservation.class)
-                .setParameter("arrival", arrival)
+    public List<Reservation> findForEndTime(LocalTime endTime) {
+        return em.createQuery("select r from Reservation r where r.endTime = :endTime", Reservation.class)
+                .setParameter("endTime", endTime)
                 .getResultList();
     }
 

@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.lang.annotation.Target;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ResTableService {
@@ -27,7 +30,11 @@ public class ResTableService {
         return coversValidation(reservation, tableList);
     }
 
-    // 정수코드
+    /**
+     * 정수 코드
+     * coversValidation()
+     * dateValidation()
+     */
     // 테이블id값 받아와서 서로 비교 해서 인원 검증
     // false => error가 존재
     private boolean coversValidation(Reservation reservation, List<ResTable> tableList) {
@@ -51,5 +58,27 @@ public class ResTableService {
     public int findCovers(Reservation reservation) {
         ResTable target = resTableRepository.findTable(reservation.getTable_id());
         return target.getCovers();
+    }
+
+    //정수코드 날짜 검증
+    public boolean dateValidation(Reservation reservation) {
+        LocalDate nowDate = LocalDate.now();
+        if (reservation.getDate().isBefore(nowDate)) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean timeDuplication(Reservation newReservation, int id) {
+        List<Reservation> reservationList = reservationRepository.findForTableId(id);
+
+        for (Reservation temp : reservationList) {
+            if (newReservation.getDate().equals(temp.getDate()) && !Objects.equals(newReservation.getOid(), temp.getOid())) {
+                if (newReservation.getTime().isAfter(temp.getTime()) || newReservation.getTime().isBefore(temp.getEndTime())) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

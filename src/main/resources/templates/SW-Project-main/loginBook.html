@@ -71,6 +71,55 @@
             print()
         });
     </script>-->
+    <style>
+        /* 추가코드 */
+        /* 유저 리스트에서 변경 창 테이블 css */
+        .mod_table_container {
+            padding-top: 5px;
+            padding-bottom: 10px;
+            border-radius: 100%;
+        }
+
+        /* user userModify 버튼 컨테이너*/
+        .mod_btn_container {
+            padding-left: 125px;
+        }
+
+        /* 버튼별 padding*/
+        .mod_btn_padding {
+            padding-left: 15px;
+        }
+
+        /* button 사이즈 */
+        .mod_btn_size {
+            height: 70px;
+            width: 70px;
+            border-radius: 100%;
+        }
+
+        /* user modify에서 버튼 tag시 정보 출력 */
+        .mod_table_info {
+            display: none;
+        }
+
+        /* user modify에서 버튼 tag시 정보 출력 */
+        .mod_btn:hover > .mod_table_info {
+            border: 3px solid black;
+            background-color: white;
+            display: block;
+            font-size: 12px;
+            color: black;
+            width: 70px;
+            height: 60px;
+            font-family: Arial;
+            margin-left: -13px;
+        }
+
+        /*modify page 버튼 */
+        .table_info {
+            display: none;
+        }
+    </style>
 </head>
 
 <body class="sub_page" th:object="${login}">
@@ -200,10 +249,8 @@
                 <div class="form_container">
                     <form action="" th:action="@{|/book/${login.key}|}" th:method="post" th:object="${reservation}">
                         <div>
+                            <div style="color: red"><p>예약할 테이블 번호를 입력해주세요.</p></div>
                             <select class="form-control nice-select wide" id="table_id" th:field="*{table_id}">
-                                <option value="" disabled selected>
-                                    테이블 번호
-                                </option>
                                 <option value="1">
                                     1
                                 </option>
@@ -246,9 +293,12 @@
                         <div style="color: red" th:if="${coversError}">
                             <p>인원 수를 입력해주세요</p>
                         </div>
+
                         <div style="color: red" th:if="${!coversError}">
-                            <p th:text="${table.oid} + '번 테이블은 '+ ${table.covers} + '명을 초과할 수 없습니다.'">인원수 초과입니다.</p>
+                            <p th:text="${errorTable.oid} + '번 테이블은 '+ ${errorTable.covers} + '명을 초과할 수 없습니다.'">
+                                인원수 초과입니다.</p>
                         </div>
+
                         <div>
                             <select class="form-control nice-select wide" id="covers" th:field="*{covers}">
                                 <option value="2">
@@ -262,8 +312,17 @@
                                 </option>
                             </select>
                         </div>
+
+                        <div style="color: red" th:if="${!isCurrentDate}">
+                            <p th:text="'현재 날짜 이전에는 예약이 불가합니다.'">
+                                예약할 수 없는 시간입니다.</p>
+                        </div>
                         <div>
                             <input type="date" class="form-control" th:field="*{date}">
+                        </div>
+                        <div style="color: red"><p>영업시간: 12:00 ~ 22:00</p></div>
+                        <div style="color: red" th:if="${!isDuplicate}">
+                            <p th:text="${duplicateTime} + '에는 예약이 불가합니다.'"></p>
                         </div>
                         <div>
                             <input type="time" class="form-control" value="12:00" min="12:00" max="20:00"
@@ -278,8 +337,138 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="map_container ">
-                    <div id="googleMap"></div>
+                <div class="mod_btn_container">
+                    <div class="mod_table_container">
+                        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                                <div class="mod_btn_padding">
+                                    <button type="button" style="background-color:#3498DB"
+                                            class="btn btn-secondary mod_btn_size mod_btn">1
+                                        <div class="mod_table_info">
+                                            <span th:text="'인원수: ' + ${tableNum1.covers}+ ' '">인원수:3명</span>
+                                            <th:block th:each="book : ${arr1}">
+                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">111</p>
+                                            </th:block>
+                                            현재 예약 가능
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                                <div class="mod_btn_padding">
+                                    <button type="button" style="background-color:#3498DB"
+                                            class="btn btn-secondary mod_btn_size mod_btn">2
+                                        <div class="mod_table_info">
+                                            <span th:text="'인원수: ' + ${tableNum2.covers}+ ' '">인원수:3명</span>
+                                            <th:block th:each="book : ${arr2}">
+                                                <span th:text="${book.time} + ' ~ ' + ${book.endTime}">111</span>
+                                            </th:block>
+                                            현재 예약 가능
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                                <div class="mod_btn_padding">
+                                    <button type="button" style="background-color:#3498DB"
+                                            class="btn btn-secondary mod_btn_size mod_btn">3
+                                        <div class="mod_table_info"><span th:text="'인원수: ' + ${tableNum3.covers}+ ' '">인원수:3명</span>
+                                            <th:block th:each="book : ${arr3}">
+                                                <span th:text="${book.time} + ' ~ ' + ${book.endTime}">111</span>
+                                            </th:block>
+                                            현재 예약 가능
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mod_table_container ">
+                        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                                <div class="mod_btn_padding">
+                                    <button type="button" style="background-color:#3498DB"
+                                            class="btn btn-secondary mod_btn_size mod_btn">4
+                                        <div class="mod_table_info"><span th:text="'인원수: ' + ${tableNum4.covers}+ ' '">인원수:3명 </span>
+                                            <th:block th:each="book : ${arr4}">
+                                                <span th:text="${book.time} + ' ~ ' + ${book.endTime}">111</span>
+                                            </th:block>
+                                            현재 예약 가능
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                                <div class="mod_btn_padding">
+                                    <button type="button" style="background-color:#3498DB"
+                                            class="btn btn-secondary mod_btn_size mod_btn">5
+                                        <div class="mod_table_info"><span th:text="'인원수: ' + ${tableNum5.covers} + ' '">인원수:3명</span>
+                                            <th:block th:each="book : ${arr5}">
+                                                <span th:text="${book.time} + ' ~ ' + ${book.endTime}">111</span>
+                                            </th:block>
+                                            현재 예약 가능
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                                <div class="mod_btn_padding">
+                                    <button type="button" style="background-color:#3498DB"
+                                            class="btn btn-secondary mod_btn_size mod_btn">6
+                                        <div class="mod_table_info"><span th:text="'인원수: ' + ${tableNum6.covers}+ ' '">인원수:3명</span>
+                                            <th:block th:each="book : ${arr6}">
+                                                <span th:text="${book.time} + ' ~ ' + ${book.endTime}">111</span>
+                                            </th:block>
+                                            현재 예약 가능
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mod_table_container ">
+                        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                                <div class="mod_btn_padding">
+                                    <button type="button" style="background-color:#3498DB"
+                                            class="btn btn-secondary mod_btn_size mod_btn">7
+                                        <div class="mod_table_info"><span th:text="'인원수: ' + ${tableNum7.covers}+ ' '">인원수:3명</span>
+                                            <th:block th:each="book : ${arr7}">
+                                                <span th:text="${book.time} + ' ~ ' + ${book.endTime}">111</span>
+                                            </th:block>
+                                            현재 예약 가능
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                                <div class="mod_btn_padding">
+                                    <button type="button" style="background-color:#3498DB"
+                                            class="btn btn-secondary mod_btn_size mod_btn">8
+                                        <div class="mod_table_info"><span th:text="'인원수: ' + ${tableNum8.covers}+ ' '">인원수:3명</span>
+                                            <th:block th:each="book : ${arr8}">
+                                                <span th:text="${book.time} + ' ~ ' + ${book.endTime}">111</span>
+                                            </th:block>
+                                            현재 예약 가능
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                                <div class="mod_btn_padding">
+                                    <button type="button" style="background-color:#3498DB"
+                                            class="btn btn-secondary mod_btn_size mod_btn">9
+                                        <div class="mod_table_info"><span th:text="'인원수: ' + ${tableNum9.covers}+ ' '">인원수:3명 </span>
+                                            <th:block th:each="book : ${arr9}">
+                                                <span th:text="${book.time} + ' ~ ' + ${book.endTime}">111</span>
+                                            </th:block>
+                                            현재 예약 가능
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
