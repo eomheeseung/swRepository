@@ -77,4 +77,7 @@ public class ReservationRepository {
                 .getResultList();
     }
 
+    public void remove(Reservation reservation) {
+        em.remove(reservation);
+    }
 }

@@ -1,26 +1,32 @@
 package hello.se.web.controller;
 
 import hello.se.domain.DBdata.Login;
+import hello.se.domain.DBdata.ResTable;
 import hello.se.domain.DBdata.Reservation;
 import hello.se.domain.respository.ResTableRepository;
+import hello.se.domain.respository.ReservationRepository;
 import hello.se.web.Form.LoginValidationForm;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @Slf4j
 public class OnlyViewController {
     private ResTableRepository resTableRepository;
+    private ReservationRepository reservationRepository;
 
     @Autowired
-    public OnlyViewController(ResTableRepository resTableRepository) {
+    public OnlyViewController(ResTableRepository resTableRepository, ReservationRepository reservationRepository) {
+        this.reservationRepository = reservationRepository;
         this.resTableRepository = resTableRepository;
         resTableRepository.init();
     }
@@ -86,12 +92,14 @@ public class OnlyViewController {
         model.addAttribute("login", currentUser);
         return "SW-Project-main/loginAbout";
     }
+
     @GetMapping("/book/{key}")
     public String addLoginReservation(@PathVariable Long key, Model model,HttpServletRequest request) {
         HttpSession session = request.getSession();
         Login currentUser = (Login) session.getAttribute("user");
         model.addAttribute("reservation", new Reservation());
         model.addAttribute("login", currentUser);
+        model.addAttribute("coversError",true);
         return "SW-Project-main/loginBook";
     }
 

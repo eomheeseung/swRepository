@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -162,10 +164,9 @@ public class LoginRepository {
         return true;
     }
 
-    /**
-     * date, time 검증
-     */
-    private boolean timeValidation(Reservation reservation, Reservation target) {
+
+//     date, time 검증
+    /*private boolean timeValidation(Reservation reservation, Reservation target) {
         if (reservation.getDate().equals(target.getDate())) {
             if (reservation.getTime().isAfter(target.getTime())) {
                 return false;
@@ -174,5 +175,51 @@ public class LoginRepository {
             return true;
         }
         return true;
+    }*/
+
+
+
+
+    private boolean dateValidation(Reservation reservation)
+    {
+        LocalDate nowDate=LocalDate.now();
+        if(reservation.getDate().isBefore(nowDate)) {
+            return false;
+        }
+        return true;
     }
+
+    private boolean timeValidation(Reservation reservation)
+    {
+        LocalDate nowDate=LocalDate.now();
+        LocalTime nowTime=LocalTime.now();
+        if(reservation.getDate().equals(nowDate)) {
+            if (reservation.getTime().isBefore(nowTime)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /*private boolean monitor(Reservation reservation, ResTable resTable)
+    {
+        if(coversValidation(resrvation,restable)&&dateValidation(reservation)&&timeValidation(reservation))
+        {
+            return true;
+        }
+        return false;
+    }*/
+
+
+//     date, time 검증
+   /* private boolean timeValidation(Reservation reservation, Reservation target) {
+        if (reservation.getDate().equals(target.getDate())) {
+            if (reservation.getTime().isEqual(target.getTime())) {
+                return false;
+            }
+        } else {
+            return true;
+        }
+        return true;
+    }*/
 }

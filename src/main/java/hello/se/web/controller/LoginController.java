@@ -2,6 +2,7 @@ package hello.se.web.controller;
 
 import hello.se.domain.DBdata.Login;
 import hello.se.domain.respository.LoginRepository;
+import hello.se.web.Form.LoginForm;
 import hello.se.web.Form.LoginValidationForm;
 import hello.se.web.service.LoginService;
 import lombok.extern.slf4j.Slf4j;
@@ -47,7 +48,7 @@ public class LoginController {
     }
 
     @PostMapping("/login/register")
-    public String addInfo(@ModelAttribute hello.se.web.Form.LoginForm loginForm) {
+    public String addInfo(@ModelAttribute LoginForm loginForm) {
         loginRepository.saveWeb(loginForm);
         return "redirect:/";
     }

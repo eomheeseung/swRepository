@@ -51,6 +51,9 @@ public class Reservation {
     @Column(name = "login_key")
     private Long loginKey;
 
+    @Column(name = "coversError")
+    private Boolean error;
+
    /* @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "resTable_oid")
     private ResTable resTable;*/

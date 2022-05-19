@@ -76,4 +76,9 @@ public class ResTableRepository {
     public ResTable findTable(int id) {
         return em.find(ResTable.class, id);
     }
+
+    public List<ResTable> findAll() {
+        return em.createQuery("select r from ResTable r", ResTable.class)
+                .getResultList();
+    }
 }
