@@ -69,6 +69,9 @@ public class ResTableService {
         return true;
     }
 
+    /**
+     * TODO 검증로직 다음날일때도 false 리턴되서 해결해야함
+     */
     public boolean timeDuplication(Reservation newReservation, int id) {
         List<Reservation> reservationList = reservationRepository.findForTableId(id);
 

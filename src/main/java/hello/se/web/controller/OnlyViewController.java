@@ -99,6 +99,7 @@ public class OnlyViewController {
     public String addLoginReservation(@PathVariable Long key, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         Login currentUser = (Login) session.getAttribute("user");
+
         model.addAttribute("reservation", new Reservation());
         model.addAttribute("login", currentUser);
         modelToReservationAndTable(model, currentUser);

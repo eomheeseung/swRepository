@@ -75,7 +75,7 @@ public class ReservationController {
         resTableService.remove(isCurrentDate, reservation);
 
         boolean isDuplicate = resTableService.timeDuplication(reservation, reservation.getTable_id());
-        System.out.println("isDuplicate : "+isDuplicate);
+        System.out.println("isDuplicate : " + isDuplicate);
         resTableService.remove(isDuplicate, reservation);
 
         /**

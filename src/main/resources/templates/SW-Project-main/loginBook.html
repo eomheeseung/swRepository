@@ -71,6 +71,7 @@
             print()
         });
     </script>-->
+
     <style>
         /* 추가코드 */
         /* 유저 리스트에서 변경 창 테이블 css */
@@ -100,19 +101,20 @@
         /* user modify에서 버튼 tag시 정보 출력 */
         .mod_table_info {
             display: none;
+            position:absolute;
         }
 
-        /* user modify에서 버튼 tag시 정보 출력 */
-        .mod_btn:hover > .mod_table_info {
+        .mod_btn:hover > .mod_table_info{
             border: 3px solid black;
-            background-color: white;
-            display: block;
-            font-size: 12px;
-            color: black;
-            width: 70px;
-            height: 60px;
+            background-color:white;
+            display: inline-block;
+            font-size: 16px;
+            color:black;
+            width:250px;
+            height:250px;
             font-family: Arial;
-            margin-left: -13px;
+            margin-left: -125px;
+            z-index:1;
         }
 
         /*modify page 버튼 */
@@ -349,7 +351,6 @@
                                             <th:block th:each="book : ${arr1}">
                                                 <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">111</p>
                                             </th:block>
-                                            현재 예약 가능
                                         </div>
                                     </button>
                                 </div>
@@ -361,9 +362,8 @@
                                         <div class="mod_table_info">
                                             <span th:text="'인원수: ' + ${tableNum2.covers}+ ' '">인원수:3명</span>
                                             <th:block th:each="book : ${arr2}">
-                                                <span th:text="${book.time} + ' ~ ' + ${book.endTime}">111</span>
+                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">111</p>
                                             </th:block>
-                                            현재 예약 가능
                                         </div>
                                     </button>
                                 </div>
@@ -374,9 +374,8 @@
                                             class="btn btn-secondary mod_btn_size mod_btn">3
                                         <div class="mod_table_info"><span th:text="'인원수: ' + ${tableNum3.covers}+ ' '">인원수:3명</span>
                                             <th:block th:each="book : ${arr3}">
-                                                <span th:text="${book.time} + ' ~ ' + ${book.endTime}">111</span>
+                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">111</p>
                                             </th:block>
-                                            현재 예약 가능
                                         </div>
                                     </button>
                                 </div>
@@ -391,9 +390,8 @@
                                             class="btn btn-secondary mod_btn_size mod_btn">4
                                         <div class="mod_table_info"><span th:text="'인원수: ' + ${tableNum4.covers}+ ' '">인원수:3명 </span>
                                             <th:block th:each="book : ${arr4}">
-                                                <span th:text="${book.time} + ' ~ ' + ${book.endTime}">111</span>
+                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">111</p>
                                             </th:block>
-                                            현재 예약 가능
                                         </div>
                                     </button>
                                 </div>
@@ -404,9 +402,8 @@
                                             class="btn btn-secondary mod_btn_size mod_btn">5
                                         <div class="mod_table_info"><span th:text="'인원수: ' + ${tableNum5.covers} + ' '">인원수:3명</span>
                                             <th:block th:each="book : ${arr5}">
-                                                <span th:text="${book.time} + ' ~ ' + ${book.endTime}">111</span>
+                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">111</p>
                                             </th:block>
-                                            현재 예약 가능
                                         </div>
                                     </button>
                                 </div>
@@ -417,9 +414,8 @@
                                             class="btn btn-secondary mod_btn_size mod_btn">6
                                         <div class="mod_table_info"><span th:text="'인원수: ' + ${tableNum6.covers}+ ' '">인원수:3명</span>
                                             <th:block th:each="book : ${arr6}">
-                                                <span th:text="${book.time} + ' ~ ' + ${book.endTime}">111</span>
+                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">111</p>
                                             </th:block>
-                                            현재 예약 가능
                                         </div>
                                     </button>
                                 </div>
@@ -432,11 +428,11 @@
                                 <div class="mod_btn_padding">
                                     <button type="button" style="background-color:#3498DB"
                                             class="btn btn-secondary mod_btn_size mod_btn">7
-                                        <div class="mod_table_info"><span th:text="'인원수: ' + ${tableNum7.covers}+ ' '">인원수:3명</span>
+                                        <div class="mod_table_info">
+                                            <span th:text="'인원수: ' + ${tableNum7.covers}+ ' '">인원수:3명</span>
                                             <th:block th:each="book : ${arr7}">
-                                                <span th:text="${book.time} + ' ~ ' + ${book.endTime}">111</span>
+                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">111</p>
                                             </th:block>
-                                            현재 예약 가능
                                         </div>
                                     </button>
                                 </div>
@@ -447,9 +443,8 @@
                                             class="btn btn-secondary mod_btn_size mod_btn">8
                                         <div class="mod_table_info"><span th:text="'인원수: ' + ${tableNum8.covers}+ ' '">인원수:3명</span>
                                             <th:block th:each="book : ${arr8}">
-                                                <span th:text="${book.time} + ' ~ ' + ${book.endTime}">111</span>
+                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">111</p>
                                             </th:block>
-                                            현재 예약 가능
                                         </div>
                                     </button>
                                 </div>
@@ -460,9 +455,8 @@
                                             class="btn btn-secondary mod_btn_size mod_btn">9
                                         <div class="mod_table_info"><span th:text="'인원수: ' + ${tableNum9.covers}+ ' '">인원수:3명 </span>
                                             <th:block th:each="book : ${arr9}">
-                                                <span th:text="${book.time} + ' ~ ' + ${book.endTime}">111</span>
+                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">111</p>
                                             </th:block>
-                                            현재 예약 가능
                                         </div>
                                     </button>
                                 </div>
