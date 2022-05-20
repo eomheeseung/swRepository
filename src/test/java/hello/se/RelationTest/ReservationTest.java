@@ -86,7 +86,7 @@ public class ReservationTest {
         }
     }
 
-    @Test
+    /*@Test
     public void 예약_조회() throws Exception {
         //given
         Reservation r1 = new Reservation(1, 2,
@@ -108,5 +108,5 @@ public class ReservationTest {
         for (Reservation reservation : forArriveTime) {
             System.out.println(reservation);
         }
-    }
+    }*/
 }

@@ -2,7 +2,6 @@ package hello.se.RelationTest;
 
 import hello.se.domain.DBdata.Customer;
 import hello.se.domain.DBdata.Login;
-import hello.se.domain.DBdata.ResTable;
 import hello.se.domain.DBdata.Reservation;
 import hello.se.domain.respository.CustomerRepository;
 import hello.se.domain.respository.LoginRepository;
@@ -13,11 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDateTime;
-import java.util.Date;
-
-import static org.junit.jupiter.api.Assertions.fail;
 
 @SpringBootTest
 @Transactional
@@ -45,8 +39,8 @@ public class LoginTest {
     @Test
     @Rollback(false)
     public void 로그인() throws Exception {
-        user1 = loginRepository.save("test", "test!","가나다","010-1111-1111");
-        user2 = loginRepository.save("apple", "apple!","김철수","010-2222-1111");
+        user1 = loginRepository.save("test", "test!", "가나다", "010-1111-1111");
+        user2 = loginRepository.save("apple", "apple!", "김철수", "010-2222-1111");
         Assertions.assertThat(user1.getId()).isEqualTo("test");
     }
 

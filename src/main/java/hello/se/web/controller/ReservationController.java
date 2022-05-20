@@ -33,7 +33,6 @@ public class ReservationController {
     private Boolean isCovers = true;
     private ReservationService reservationService;
 
-
     @Autowired
     public ReservationController(ReservationRepository reservationRepository, LoginRepository loginRepository,
                                  ResTableService resTableService, ResTableRepository resTableRepository,
@@ -63,6 +62,7 @@ public class ReservationController {
                                       HttpServletRequest request, RedirectAttributes redirectAttributes, Model model) {
         HttpSession session = request.getSession();
         Login currentUser = (Login) session.getAttribute("user");
+
         reservation.setLoginKey(currentUser.getKey());
         isCovers = resTableService.addIsCovers(reservation);
         reservation.setError(isCovers);
