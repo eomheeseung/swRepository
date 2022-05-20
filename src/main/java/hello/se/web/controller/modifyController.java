@@ -5,6 +5,7 @@ import hello.se.domain.DBdata.Reservation;
 import hello.se.domain.respository.LoginRepository;
 import hello.se.domain.respository.ResTableRepository;
 import hello.se.domain.respository.ReservationRepository;
+import hello.se.web.Form.CancelForm;
 import hello.se.web.Form.ModifyForm;
 import hello.se.web.service.ResTableService;
 import hello.se.web.service.ReservationService;
@@ -44,11 +45,12 @@ public class modifyController {
         HttpSession session = request.getSession();
         Login currentUser = (Login) session.getAttribute("user");
 
-        List<Reservation> BookList = reservationRepository.findAll(currentUser);
+        List<Reservation> BookList = reservationRepository.findForLoginKey(currentUser.getKey());
         model.addAttribute("list", BookList);
 
         model.addAttribute("reservation", new Reservation());
         model.addAttribute("modifyForm", new ModifyForm());
+        model.addAttribute("cancel", new CancelForm());
         model.addAttribute("login", currentUser);
         modelToReservationAndTable(model, currentUser);
         model.addAttribute("coversError", true);
@@ -89,7 +91,7 @@ public class modifyController {
         resTableService.remove(isCovers, reservation);
 
         boolean isCurrentDate = resTableService.dateValidation(reservation);
-        System.out.println("isCurrentDate : "+isCurrentDate);
+        System.out.println("isCurrentDate : " + isCurrentDate);
         resTableService.remove(isCurrentDate, reservation);
 
         boolean isDuplicate = resTableService.timeDuplication(reservation, reservation.getTable_id());
@@ -100,6 +102,7 @@ public class modifyController {
             model.addAttribute("reservation", new Reservation());
             model.addAttribute("login", currentUser);
             modelToReservationAndTable(model, currentUser);
+            model.addAttribute("cancel", new CancelForm());
             model.addAttribute("coversError", false);
             model.addAttribute("errorTable", resTableRepository.findTable(reservation.getTable_id()));
             model.addAttribute("isCurrentDate", true);
@@ -112,6 +115,7 @@ public class modifyController {
             model.addAttribute("reservation", new Reservation());
             model.addAttribute("login", currentUser);
             modelToReservationAndTable(model, currentUser);
+            model.addAttribute("cancel", new CancelForm());
             model.addAttribute("coversError", true);
             model.addAttribute("errorTable", resTableRepository.findTable(reservation.getTable_id()));
             model.addAttribute("isCurrentDate", false);
@@ -123,6 +127,7 @@ public class modifyController {
         if (!isDuplicate) {
             model.addAttribute("reservation", new Reservation());
             model.addAttribute("login", currentUser);
+            model.addAttribute("cancel", new CancelForm());
             modelToReservationAndTable(model, currentUser);
             model.addAttribute("coversError", true);
             model.addAttribute("errorTable", resTableRepository.findTable(reservation.getTable_id()));
@@ -133,12 +138,6 @@ public class modifyController {
             return "SW-Project-main/bookList";
         }
 
-        /**
-         * TODO 이름/전화번호/이메일을 modifyBook에 복사에서 List로 뿌리기 => 하나의 데이터마다 2개의 행이 출력되는것 수정
-         *
-         * 현재 들어간 데이터
-         * 테이블번호/인원수/예약날짜, 시간
-         */
         modifiedBook.setCovers(reservation.getCovers());
         modifiedBook.setTable_id(reservation.getTable_id());
         modifiedBook.setTime(reservation.getTime());

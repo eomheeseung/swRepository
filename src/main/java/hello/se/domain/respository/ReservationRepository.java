@@ -59,10 +59,9 @@ public class ReservationRepository {
         return em.find(Reservation.class, oid);
     }
 
-    public List<Reservation> findAll(Login login) {
-        return em.createQuery("select r from Reservation r inner join Login l on r.loginKey =: key", Reservation.class)
-                .setParameter("key", login.getKey())
-                .getResultList();
+    public List<Reservation> findForLoginKey(Long key) {
+        return em.createQuery("select r from Reservation r where r.loginKey =: key", Reservation.class)
+                .setParameter("key", key).getResultList();
     }
 
     public List<Reservation> findForOid(int oid) {
@@ -93,6 +92,11 @@ public class ReservationRepository {
         return em.createQuery("select r from Reservation r where r.table_id = :tableId", Reservation.class)
                 .setParameter("tableId", tableId)
                 .getResultList();
+    }
+
+    public List<Reservation> findCancelForName(String name) {
+        return em.createQuery("select r from Reservation r where r.name =: name ", Reservation.class)
+                .setParameter("name", name).getResultList();
     }
 
     public void remove(Reservation reservation) {

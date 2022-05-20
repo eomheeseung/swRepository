@@ -1,13 +1,14 @@
 package hello.se.web.service;
 
-import hello.se.domain.DBdata.ResTable;
 import hello.se.domain.DBdata.Reservation;
 import hello.se.domain.respository.ResTableRepository;
 import hello.se.domain.respository.ReservationRepository;
+import hello.se.web.Form.CancelForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReservationService {
@@ -24,5 +25,12 @@ public class ReservationService {
         if (!error) {
             reservationRepository.remove(reservation);
         }
+    }
+
+    public Optional<Reservation> findOneForCancel(CancelForm cancelForm) {
+        List<Reservation> list = reservationRepository.findCancelForName(cancelForm.getCancelName());
+
+        return list.stream().filter(r -> r.getPhoneNumber().equals(cancelForm.getCancelPhoneNumber()))
+                .findFirst();
     }
 }

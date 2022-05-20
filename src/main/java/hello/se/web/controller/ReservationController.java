@@ -78,11 +78,6 @@ public class ReservationController {
         System.out.println("isDuplicate : " + isDuplicate);
         resTableService.remove(isDuplicate, reservation);
 
-        /**
-         * TODO
-         * 맞지 않은 인원수에 대해 DB에서 삭제하고
-         * 표시문구를 바꿈.
-         */
         if (!isCovers) {
             model.addAttribute("reservation", new Reservation());
             model.addAttribute("login", currentUser);

@@ -338,6 +338,7 @@
                     </form>
                 </div>
             </div>
+
             <div class="col-md-6">
                 <div class="mod_btn_container">
                     <div class="mod_table_container">
@@ -347,9 +348,12 @@
                                     <button type="button" style="background-color:#3498DB"
                                             class="btn btn-secondary mod_btn_size mod_btn">1
                                         <div class="mod_table_info">
-                                            <span th:text="'인원수: ' + ${tableNum1.covers}+ ' '">인원수:3명</span>
+                                            <span th:text="'앉을 수 있는 인원: ' + ${tableNum1.covers}+ '명'"
+                                                  style="color: red">인원수:3명</span>
+                                            <div style="font-weight: bold; color: darkblue">예약 상황</div>
                                             <th:block th:each="book : ${arr1}">
-                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">111</p>
+                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">
+                                                    111</p>
                                             </th:block>
                                         </div>
                                     </button>
@@ -360,9 +364,12 @@
                                     <button type="button" style="background-color:#3498DB"
                                             class="btn btn-secondary mod_btn_size mod_btn">2
                                         <div class="mod_table_info">
-                                            <span th:text="'인원수: ' + ${tableNum2.covers}+ ' '">인원수:3명</span>
+                                            <span th:text="'앉을 수 있는 인원: ' + ${tableNum2.covers}+ '명'"
+                                                  style="color: red">인원수:3명</span>
+                                            <div style="font-weight: bold; color: darkblue">예약 상황</div>
                                             <th:block th:each="book : ${arr2}">
-                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">111</p>
+                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">
+                                                    111</p>
                                             </th:block>
                                         </div>
                                     </button>
@@ -372,9 +379,13 @@
                                 <div class="mod_btn_padding">
                                     <button type="button" style="background-color:#3498DB"
                                             class="btn btn-secondary mod_btn_size mod_btn">3
-                                        <div class="mod_table_info"><span th:text="'인원수: ' + ${tableNum3.covers}+ ' '">인원수:3명</span>
+                                        <div class="mod_table_info">
+                                            <span th:text="'앉을 수 있는 인원: ' + ${tableNum3.covers}+ '명'"
+                                                  style="color: red">인원수:3명</span>
+                                            <div style="font-weight: bold; color: darkblue">예약 상황</div>
                                             <th:block th:each="book : ${arr3}">
-                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">111</p>
+                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">
+                                                    111</p>
                                             </th:block>
                                         </div>
                                     </button>
@@ -388,9 +399,13 @@
                                 <div class="mod_btn_padding">
                                     <button type="button" style="background-color:#3498DB"
                                             class="btn btn-secondary mod_btn_size mod_btn">4
-                                        <div class="mod_table_info"><span th:text="'인원수: ' + ${tableNum4.covers}+ ' '">인원수:3명 </span>
+                                        <div class="mod_table_info">
+                                            <span th:text="'앉을 수 있는 인원: ' + ${tableNum4.covers}+ '명'"
+                                                  style="color: red">인원수:3명</span>
+                                            <div style="font-weight: bold; color: darkblue">예약 상황</div>
                                             <th:block th:each="book : ${arr4}">
-                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">111</p>
+                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">
+                                                    111</p>
                                             </th:block>
                                         </div>
                                     </button>
@@ -400,9 +415,13 @@
                                 <div class="mod_btn_padding">
                                     <button type="button" style="background-color:#3498DB"
                                             class="btn btn-secondary mod_btn_size mod_btn">5
-                                        <div class="mod_table_info"><span th:text="'인원수: ' + ${tableNum5.covers} + ' '">인원수:3명</span>
+                                        <div class="mod_table_info">
+                                            <span th:text="'앉을 수 있는 인원: ' + ${tableNum5.covers}+ '명'"
+                                                  style="color: red">인원수:3명</span>
+                                            <div style="font-weight: bold; color: darkblue">예약 상황</div>
                                             <th:block th:each="book : ${arr5}">
-                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">111</p>
+                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">
+                                                    111</p>
                                             </th:block>
                                         </div>
                                     </button>
@@ -412,9 +431,13 @@
                                 <div class="mod_btn_padding">
                                     <button type="button" style="background-color:#3498DB"
                                             class="btn btn-secondary mod_btn_size mod_btn">6
-                                        <div class="mod_table_info"><span th:text="'인원수: ' + ${tableNum6.covers}+ ' '">인원수:3명</span>
+                                        <div class="mod_table_info">
+                                            <span th:text="'앉을 수 있는 인원: ' + ${tableNum6.covers}+ '명'"
+                                                  style="color: red">인원수:3명</span>
+                                            <div style="font-weight: bold; color: darkblue">예약 상황</div>
                                             <th:block th:each="book : ${arr6}">
-                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">111</p>
+                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">
+                                                    111</p>
                                             </th:block>
                                         </div>
                                     </button>
@@ -429,9 +452,12 @@
                                     <button type="button" style="background-color:#3498DB"
                                             class="btn btn-secondary mod_btn_size mod_btn">7
                                         <div class="mod_table_info">
-                                            <span th:text="'인원수: ' + ${tableNum7.covers}+ ' '">인원수:3명</span>
+                                            <span th:text="'앉을 수 있는 인원: ' + ${tableNum7.covers}+ '명'"
+                                                  style="color: red">인원수:3명</span>
+                                            <div style="font-weight: bold; color: darkblue">예약 상황</div>
                                             <th:block th:each="book : ${arr7}">
-                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">111</p>
+                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">
+                                                    111</p>
                                             </th:block>
                                         </div>
                                     </button>
@@ -441,9 +467,13 @@
                                 <div class="mod_btn_padding">
                                     <button type="button" style="background-color:#3498DB"
                                             class="btn btn-secondary mod_btn_size mod_btn">8
-                                        <div class="mod_table_info"><span th:text="'인원수: ' + ${tableNum8.covers}+ ' '">인원수:3명</span>
+                                        <div class="mod_table_info">
+                                            <span th:text="'앉을 수 있는 인원: ' + ${tableNum8.covers}+ '명'"
+                                                  style="color: red">인원수:3명</span>
+                                            <div style="font-weight: bold; color: darkblue">예약 상황</div>
                                             <th:block th:each="book : ${arr8}">
-                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">111</p>
+                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">
+                                                    111</p>
                                             </th:block>
                                         </div>
                                     </button>
@@ -453,9 +483,13 @@
                                 <div class="mod_btn_padding">
                                     <button type="button" style="background-color:#3498DB"
                                             class="btn btn-secondary mod_btn_size mod_btn">9
-                                        <div class="mod_table_info"><span th:text="'인원수: ' + ${tableNum9.covers}+ ' '">인원수:3명 </span>
+                                        <div class="mod_table_info">
+                                            <span th:text="'앉을 수 있는 인원: ' + ${tableNum9.covers}+ '명'"
+                                                  style="color: red">인원수:3명</span>
+                                            <div style="font-weight: bold; color: darkblue">예약 상황</div>
                                             <th:block th:each="book : ${arr9}">
-                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">111</p>
+                                                <p th:text="${book.date}+': ' + ${book.time} + ' ~ ' + ${book.endTime}">
+                                                    111</p>
                                             </th:block>
                                         </div>
                                     </button>

@@ -211,7 +211,7 @@
             </h2>
             <table class="table table-hover">
                 <tr>
-                    <th scope="col">List</th>
+                    <th scope="col">List번호</th>
                     <th scope="col">이름</th>
                     <th scope="col">테이블 번호</th>
                     <th scope="col">전화번호</th>
@@ -233,8 +233,8 @@
 
         </div>
     </div>
-<!--    <form action="" th:action="@{/adminlist}" th:method="post" th:object="${reservation}">-->
-<!--    </form>-->
+    <!--    <form action="" th:action="@{/adminlist}" th:method="post" th:object="${reservation}">-->
+    <!--    </form>-->
 </section>
 <!-- 예약자 리스트 끝 -->
 
@@ -317,11 +317,13 @@
                             <input type="time" class="form-control" value="12:00" min="12:00" max="20:00"
                                    th:field="*{time}">
                         </div>
-                        <div class="btn_box" style="padding: 0 0 35px 0">
+                        <div class="btn_box" style="padding: 0 0 35px 0; display: inline-block">
                             <button type="submit" th:href="@{|/modify/${login.key}|}">수정하기</button>
-                            <button type="submit" th:href="@{|/book/${login.key}|}">취소하기</button>
                         </div>
                     </form>
+                    <div style="display: inline-block; padding: 0 0 35px 0">
+                        <button th:onclick="|location.href='@{/cancel/{key}(key=${login.key})}'|">예약 취소 화면으로 이동</button>
+                    </div>
                 </div>
             </div>
 
