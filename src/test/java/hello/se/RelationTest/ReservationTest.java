@@ -2,10 +2,9 @@ package hello.se.RelationTest;
 
 import hello.se.domain.DBdata.Customer;
 import hello.se.domain.DBdata.ResTable;
-import hello.se.domain.DBdata.Reservation;
 import hello.se.domain.respository.CustomerRepository;
-import hello.se.domain.respository.ReservationRepository;
 import hello.se.domain.respository.ResTableRepository;
+import hello.se.domain.respository.ReservationRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,18 +12,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.Date;
 import java.util.List;
-import java.util.regex.Pattern;
 
 @SpringBootTest
 @Transactional
 @Rollback(true)
 public class ReservationTest {
-
     @Autowired
     ResTableRepository tableRepository;
     @Autowired
