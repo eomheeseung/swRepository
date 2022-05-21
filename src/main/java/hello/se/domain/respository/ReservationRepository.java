@@ -3,6 +3,7 @@ package hello.se.domain.respository;
 import hello.se.domain.DBdata.Login;
 import hello.se.domain.DBdata.ResTable;
 import hello.se.domain.DBdata.Reservation;
+import hello.se.web.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,6 +55,10 @@ public class ReservationRepository {
 //        em.persist(reservation);
         return reservation;
     }*/
+    public List<Reservation> findAll() {
+        return em.createQuery("select r from Reservation r", Reservation.class)
+                .getResultList();
+    }
 
     public Reservation findReservation(int oid) {
         return em.find(Reservation.class, oid);

@@ -7,11 +7,8 @@ import hello.se.domain.respository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.annotation.Target;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class ResTableService {
@@ -69,15 +66,12 @@ public class ResTableService {
         return true;
     }
 
-    /**
-     * TODO 검증로직 다음날일때도 false 리턴되서 해결해야함
-     */
     public boolean timeDuplication(Reservation newReservation, int id) {
         List<Reservation> reservationList = reservationRepository.findForTableId(id);
 
         for (Reservation temp : reservationList) {
-            if (newReservation.getDate().equals(temp.getDate()) && !Objects.equals(newReservation.getOid(), temp.getOid())) {
-                if (newReservation.getTime().isAfter(temp.getTime()) || newReservation.getTime().isBefore(temp.getEndTime())) {
+            if (newReservation.getDate().equals(temp.getDate())) {
+                if (newReservation.getTime().isAfter(temp.getTime()) && newReservation.getTime().isBefore(temp.getEndTime())) {
                     return false;
                 }
             }

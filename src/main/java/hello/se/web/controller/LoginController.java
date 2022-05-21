@@ -44,6 +44,12 @@ public class LoginController {
         redirectAttributes.addAttribute("key", currentUser.getKey());
         session.setAttribute("user", currentUser);
         log.info("login success");
+
+        if (currentUser.getKey() == 1) {
+            redirectAttributes.addAttribute("key", currentUser.getKey());
+            return "redirect:/admin/{key}";
+        }
+
         return "redirect:/book/{key}";
     }
 

@@ -27,7 +27,7 @@ public class AdminController {
         HttpSession session = request.getSession();
         Login admin = (Login) session.getAttribute("user");
         model.addAttribute("login", admin);
-        List<Reservation> allList = reservationRepository.findALl();
+        List<Reservation> allList = reservationRepository.findAll();
         model.addAttribute("allList", allList);
 
         return "SW-Project-main/adminList";
