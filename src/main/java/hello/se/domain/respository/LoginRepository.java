@@ -50,6 +50,13 @@ public class LoginRepository {
         user1.setUsername("user1");
         user1.setPhoneNumber("010-2222-2222");
         em.persist(user1);
+
+        Login user2 = new Login();
+        user2.setId("qqqq");
+        user2.setPassword("2222");
+        user2.setUsername("user2");
+        user2.setPhoneNumber("010-3333-3333");
+        em.persist(user2);
     }
 
     //테스트용
