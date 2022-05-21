@@ -1,7 +1,6 @@
 package hello.se.web.controller;
 
 import hello.se.domain.DBdata.Login;
-import hello.se.domain.DBdata.ResTable;
 import hello.se.domain.DBdata.Reservation;
 import hello.se.domain.respository.ResTableRepository;
 import hello.se.domain.respository.ReservationRepository;
@@ -11,13 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.LocalTime;
-import java.util.List;
 
 @Controller
 @Slf4j

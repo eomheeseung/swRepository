@@ -21,7 +21,7 @@ import java.util.Optional;
 public class LoginRepository {
     @PersistenceContext
     EntityManager em;
-    hello.se.web.Form.LoginForm loginForm;
+    LoginForm loginForm;
     ReservationRepository reservationRepository;
     CustomerRepository customerRepository;
     private Login findCustomer;
@@ -166,7 +166,6 @@ public class LoginRepository {
         }
         return findCustomer;
     }*/
-
 
 
 //     date, time 검증

@@ -60,6 +60,11 @@ public class ReservationRepository {
                 .getResultList();
     }
 
+    public List<Reservation> findALl() {
+        return em.createQuery("select r from Reservation r", Reservation.class)
+                .getResultList();
+    }
+
     public Reservation findReservation(int oid) {
         return em.find(Reservation.class, oid);
     }
