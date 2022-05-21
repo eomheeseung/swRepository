@@ -12,10 +12,11 @@
     <meta name="author" content=""/>
     <link rel="shortcut icon" href="images/favicon.png" th:href="@{~/images/favicon.png}" type="">
 
-    <title> Administer List </title>
+    <title> Admin List </title>
 
     <!-- bootstrap core css -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" th:href="@{~/css/bootstrap.css}"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"
+          th:href="@{~/css/bootstrap.css}"/>
 
     <!--owl slider stylesheet -->
     <link rel="stylesheet" type="text/css"
@@ -32,17 +33,16 @@
           th:href="@{~/css/font-awesome.min.css}"/>
 
     <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet" th:href="@{~/css/style.scss}"/>
+    <link href="css/style.css" rel="stylesheet" th:href="@{~/css/style.css}"/>
     <!-- responsive style -->
     <link href="css/responsive.css" rel="stylesheet" th:href="@{~/css/responsive.css}"/>
-
 </head>
 
 <body class="sub_page">
 
 <div class="hero_area">
     <div class="bg-box">
-        <img src="images/hero-bg.jpg" th:src="@{~/images/hero-bg.jpg}" alt="">
+        <img src="images/bg.jpg" th:src="@{~/images/bg.jpg}" alt="">
     </div>
 
     <!-- 헤더  -->
@@ -64,21 +64,20 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav  mx-auto ">
                         <li class="nav-item active">
-                            <a class="nav-link" href="index" th:href="@{index}">Home <span
-                                    class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/" th:href="@{|/index/${login.key}|}">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="menu" th:href="@{menu}">Menu</a>
+                            <a class="nav-link" href="/menu" th:href="@{|/menu/${login.key}|}">Menu</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about" th:href="@{about}">About</a>
+                            <a class="nav-link" href="/about" th:href="@{|/about/${login.key}|}">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="book" th:href="@{book}">Book Table</a>
+                            <a class="nav-link" href="/book" th:href="@{|/book/${login.key}|}">Book Table</a>
                         </li>
                     </ul>
                     <div class="user_option">
-                        <a href="" class="user_link">
+                        <a href="" class="user_link" th:href="@{|/modify/${login.key}|}">
                             <i class="fa fa-user" aria-hidden="true"></i>
                         </a>
                         <a class="cart_link" href="#">
@@ -143,8 +142,8 @@
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </button>
                         </form>
-                        <a href="" class="order_online">
-                            Login
+                        <a href="/login" th:href="@{|/logout/${login.key}|}" class="order_online">
+                            LogOut
                         </a>
                     </div>
                 </div>
@@ -154,58 +153,38 @@
     <!-- 헤더 끝 -->
 </div>
 
-<!-- 예약자 리스트 -->
-<section class="book_section layout_padding">
+<section class="book_section layout_padding-top">
     <div class="container">
         <div class="heading_container">
             <h2>
                 Reservation List
             </h2>
             <table class="table table-hover">
-                <thead>
                 <tr>
-                    <th scope="col">List</th>
+                    <th scope="col">List번호</th>
                     <th scope="col">이름</th>
+                    <th scope="col">테이블 번호</th>
                     <th scope="col">전화번호</th>
                     <th scope="col">이메일</th>
                     <th scope="col">인원수</th>
-                    <th scope="col">예약 날짜</th>
+                    <th scope="col">예약 날짜 / 예약시간 ~ 종료시간</th>
                 </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>강정수</td>
-                    <td>010-1111-2222</td>
-                    <td>abc@naver.com</td>
-                    <td>2</td>
-                    <td>2022-05-11</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>엄희승</td>
-                    <td>010-1111-2222</td>
-                    <td>abc@naver.com</td>
-                    <td>2</td>
-                    <td>2022-05-11</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>장현석</td>
-                    <td>010-1111-2222</td>
-                    <td>abc@naver.com</td>
-                    <td>3</td>
-                    <td>2022-05-14</td>
-                </tr>
-                </tbody>
-            </table>
 
+                <tr th:each="all : ${allList}">
+                    <th scope="row" th:text="${allStat.count}">3</th>
+                    <td th:text="${all.name}">장현석</td>
+                    <td th:text="${all.table_id}">1</td>
+                    <td th:text="${all.phoneNumber}">010-1111-2222</td>
+                    <td th:text="${all.email}">abc@naver.com</td>
+                    <td th:text="${all.covers}">3</td>
+                    <td th:text="${all.date}+' / '+${all.time}+' ~ '+${all.endTime}">2022-05-14</td>
+                </tr>
+            </table>
         </div>
     </div>
-    <form action="" th:action="@{/adminlist}" th:method="post" th:object="${reservation}">
-    </form>
+    <!--    <form action="" th:action="@{/adminlist}" th:method="post" th:object="${reservation}">-->
+    <!--    </form>-->
 </section>
-<!-- 예약자 리스트 끝 -->
 
 <!-- 하단 -->
 <footer class="footer_section">
@@ -219,21 +198,15 @@
                     <div class="contact_link_box">
                         <a href="">
                             <i class="fa fa-map-marker" aria-hidden="true"></i>
-                            <span>
-                  위치
-                </span>
+                            <span>위치</span>
                         </a>
                         <a href="">
                             <i class="fa fa-phone" aria-hidden="true"></i>
-                            <span>
-                  전화번호
-                </span>
+                            <span>전화번호</span>
                         </a>
                         <a href="">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
-                            <span>
-                  이메일
-                </span>
+                            <span>이메일</span>
                         </a>
                     </div>
                 </div>
@@ -244,7 +217,7 @@
                         Restaurant Name
                     </a>
                     <p>
-                        가게 요약 설명 ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
+                        육류, 생선류등 메인요리와 스튜, 피자 그리고 다양한 와인들을 즐길 수 있습니다.
                     </p>
                     <div class="footer_social">
                         <a href="">
@@ -307,8 +280,7 @@
 <script src="js/custom.js"
         th:src="@{~/js/custom.js}"></script>
 <!-- Google Map -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"
-        th:src="@{https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap}">
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
 </script>
 <!-- End Google Map -->
 
