@@ -30,6 +30,7 @@ public class ReservationRepository {
         return reservation;
     }
 
+    //test용
     /*public void init() {
         Reservation reservation1 = new Reservation();
         reservation1.setName("user1");

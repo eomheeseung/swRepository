@@ -55,7 +55,6 @@ public class CancelController {
         Optional<Reservation> temp = reservationService.findOneForCancel(cancelForm);
         Reservation cancelBook = temp.get();
 
-
         reservationRepository.remove(cancelBook);
 
         redirectAttributes.addAttribute("key", currentUser.getKey());

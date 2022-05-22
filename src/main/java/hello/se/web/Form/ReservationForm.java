@@ -26,9 +26,6 @@ public class ReservationForm {
 
     private Integer table_id;
 
-    /*@Column(name = "customer_id")
-    private Integer customer_id;*/
-
     private String email;
 
     private String phoneNumber;

@@ -1,9 +1,8 @@
 package hello.se.RelationTest;
 
-import hello.se.domain.DBdata.Customer;
 import hello.se.domain.DBdata.Login;
+import hello.se.domain.DBdata.ResTable;
 import hello.se.domain.DBdata.Reservation;
-import hello.se.domain.respository.CustomerRepository;
 import hello.se.domain.respository.LoginRepository;
 import hello.se.domain.respository.ResTableRepository;
 import org.assertj.core.api.Assertions;
@@ -13,6 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+
 @SpringBootTest
 @Transactional
 @Rollback
@@ -21,20 +22,18 @@ public class LoginTest {
     LoginRepository loginRepository;
     @Autowired
     ResTableRepository resTableRepository;
-    @Autowired
-    CustomerRepository customerRepository;
 
     Login user1;
     Login user2;
     Reservation reservation1;
     Reservation reservation2;
 
-    private Customer init() {
+    /*private Customer init() {
         Customer c1 = new Customer();
         c1.setName("가나다");
         c1.setPhoneNumber("010-1111-1111");
         return c1;
-    }
+    }*/
 
     @Test
     @Rollback(false)

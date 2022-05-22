@@ -23,16 +23,13 @@ public class LoginRepository {
     EntityManager em;
     LoginForm loginForm;
     ReservationRepository reservationRepository;
-    CustomerRepository customerRepository;
     private Login findCustomer;
 
     @Autowired
     public LoginRepository(hello.se.web.Form.LoginForm loginForm,
-                           ReservationRepository reservationRepository,
-                           CustomerRepository customerRepository) {
+                           ReservationRepository reservationRepository) {
         this.loginForm = loginForm;
         this.reservationRepository = reservationRepository;
-        this.customerRepository = customerRepository;
     }
 
     //관리자/user1등록
@@ -85,20 +82,6 @@ public class LoginRepository {
         return login;
     }
 
-    //DB에서 로그인 정보를 가져와서 검증
-    public Login findFromDB(LoginValidationForm validationForm) {
-        Login login = em.find(Login.class, validationForm.getId());
-        System.out.println(login.getId());
-        System.out.println(validationForm.getId());
-
-        if (!login.equals(null)) {
-            if (login.getPassword().equals(validationForm.getPassword())) {
-                return login;
-            }
-        }
-        return null;
-    }
-
     //id로 단건 조회
     public Login findFromDB(String id) {
         return em.find(Login.class, id);
@@ -121,87 +104,4 @@ public class LoginRepository {
     public Login findByKey(Long key) {
         return em.find(Login.class, key);
     }
-
-    /*//테이블의 번호를 바꿈
-    public Login modifyTableNumber(String id, Reservation newReservation, ResTable resTable) {
-        findCustomer = findFromDB(id);
-        Reservation findRes = findCustomer.getReservation();
-
-        if (timeValidation(findCustomer.getReservation(), newReservation)
-                && isCovers(findCustomer.getReservation(), resTable)) {
-            if (!findRes.getTable_id().equals(newReservation.getTable_id())) {
-                findCustomer.getReservation().setResTable(resTable);
-//                findRes.setTable_id(newReservation.getTable_id());
-            }
-        }
-
-        return findCustomer;
-    }
-
-    //예약된 테이블의 일자 변경
-    public Login modifyTableDate(String id, Reservation newReservation, ResTable resTable) {
-        findCustomer = findFromDB(id);
-        Reservation findRes = findCustomer.getReservation();
-
-        if (timeValidation(findCustomer.getReservation(), newReservation)
-                && isCovers(findCustomer.getReservation(), resTable)) {
-            if (!findRes.getTable_id().equals(newReservation.getTable_id())) {
-                findRes.setDate(newReservation.getDate());
-            }
-        }
-
-        return findCustomer;
-    }
-
-    //예약된 테이블의 시간 변경
-    public Login modifyTableTime(String id, Reservation newReservation, ResTable resTable) {
-        findCustomer = findFromDB(id);
-        Reservation findRes = findCustomer.getReservation();
-
-        if (timeValidation(findCustomer.getReservation(), newReservation)
-                && isCovers(findCustomer.getReservation(), resTable)) {
-            if (!findRes.getTable_id().equals(newReservation.getTable_id())) {
-                findRes.setTime(newReservation.getTime());
-            }
-        }
-        return findCustomer;
-    }*/
-
-
-//     date, time 검증
-    /*private boolean timeValidation(Reservation reservation, Reservation target) {
-        if (reservation.getDate().equals(target.getDate())) {
-            if (reservation.getTime().isAfter(target.getTime())) {
-                return false;
-            }
-        } else {
-            return true;
-        }
-        return true;
-    }*/
-
-
-
-
-    /*private boolean monitor(Reservation reservation, ResTable resTable)
-    {
-        if(coversValidation(resrvation,restable)&&dateValidation(reservation)&&timeValidation(reservation))
-        {
-            return true;
-        }
-        return false;
-    }*/
-
-
-//     date, time 검증
-   /* private boolean timeValidation(Reservation reservation, Reservation target) {
-        if (reservation.getDate().equals(target.getDate())) {
-            if (reservation.getTime().isEqual(target.getTime())) {
-                return false;
-            }
-        } else {
-            return true;
-        }
-        return true;
-    }*/
 }

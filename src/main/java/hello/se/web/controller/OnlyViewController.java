@@ -5,6 +5,7 @@ import hello.se.domain.DBdata.Reservation;
 import hello.se.domain.respository.ResTableRepository;
 import hello.se.domain.respository.ReservationRepository;
 import hello.se.web.Form.LoginValidationForm;
+import hello.se.web.bridge.ModelBinding;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,13 +22,15 @@ import java.time.LocalTime;
 public class OnlyViewController {
     private ResTableRepository resTableRepository;
     private ReservationRepository reservationRepository;
+    private ModelBinding modelBinding;
 
     @Autowired
-    public OnlyViewController(ResTableRepository resTableRepository, ReservationRepository reservationRepository) {
+    public OnlyViewController(ResTableRepository resTableRepository, ReservationRepository reservationRepository,
+                              ModelBinding modelBinding) {
+        this.modelBinding = modelBinding;
         this.reservationRepository = reservationRepository;
         this.resTableRepository = resTableRepository;
         resTableRepository.init();
-//        reservationRepository.init();
     }
 
     @GetMapping()
@@ -63,7 +66,6 @@ public class OnlyViewController {
     public String loginView(Model model) {
         model.addAttribute("loginValidationForm", new LoginValidationForm());
         model.addAttribute("loginForm", new hello.se.web.Form.LoginForm());
-//        model.addAttribute("login", new Login());
         log.info("login page");
         return "SW-Project-main/login_signup";
     }
@@ -99,22 +101,15 @@ public class OnlyViewController {
 
         model.addAttribute("reservation", new Reservation());
         model.addAttribute("login", currentUser);
-        modelToReservationAndTable(model, currentUser);
+//        modelToReservationAndTable(model, currentUser);
+        modelBinding.modelToReservationAndTable(model,currentUser);
         model.addAttribute("coversError", true);
         model.addAttribute("isCurrentDate", true);
         model.addAttribute("isCurrentTime", true);
         model.addAttribute("isDuplicate", true);
         model.addAttribute("duplicateTime", LocalTime.now());
 
-        model.addAttribute("arr1", reservationRepository.findForTableId(1));
-        model.addAttribute("arr2", reservationRepository.findForTableId(2));
-        model.addAttribute("arr3", reservationRepository.findForTableId(3));
-        model.addAttribute("arr4", reservationRepository.findForTableId(4));
-        model.addAttribute("arr5", reservationRepository.findForTableId(5));
-        model.addAttribute("arr6", reservationRepository.findForTableId(6));
-        model.addAttribute("arr7", reservationRepository.findForTableId(7));
-        model.addAttribute("arr8", reservationRepository.findForTableId(8));
-        model.addAttribute("arr9", reservationRepository.findForTableId(9));
+        extracted(model);
 
         return "SW-Project-main/loginBook";
     }
@@ -128,7 +123,11 @@ public class OnlyViewController {
         return "SW-Project-main/logout_signup";
     }
 
-    private void modelToReservationAndTable(Model model, Login currentUser) {
+    private void extracted(Model model) {
+        ModelBinding.temp(model, reservationRepository);
+    }
+
+    /*private void modelToReservationAndTable(Model model, Login currentUser) {
         getTable1(model, 1);
         getTable2(model, 2);
         getTable3(model, 3);
@@ -174,5 +173,5 @@ public class OnlyViewController {
 
     private Model getTable9(Model model, int id) {
         return model.addAttribute("tableNum9", resTableRepository.findTable(id));
-    }
+    }*/
 }

@@ -6,6 +6,7 @@ import hello.se.domain.DBdata.Reservation;
 import hello.se.domain.respository.LoginRepository;
 import hello.se.domain.respository.ResTableRepository;
 import hello.se.domain.respository.ReservationRepository;
+import hello.se.web.bridge.ModelBinding;
 import hello.se.web.service.ResTableService;
 import hello.se.web.service.ReservationService;
 import lombok.extern.slf4j.Slf4j;
@@ -32,11 +33,13 @@ public class ReservationController {
     private ResTableService resTableService;
     private Boolean isCovers = true;
     private ReservationService reservationService;
+    private ModelBinding modelBinding;
 
     @Autowired
     public ReservationController(ReservationRepository reservationRepository, LoginRepository loginRepository,
                                  ResTableService resTableService, ResTableRepository resTableRepository,
-                                 ReservationService reservationService) {
+                                 ReservationService reservationService, ModelBinding modelBinding) {
+        this.modelBinding = modelBinding;
         this.reservationRepository = reservationRepository;
         this.loginRepository = loginRepository;
         this.resTableService = resTableService;
@@ -81,7 +84,8 @@ public class ReservationController {
         if (!isCovers) {
             model.addAttribute("reservation", new Reservation());
             model.addAttribute("login", currentUser);
-            modelToReservationAndTable(model, currentUser);
+//            modelToReservationAndTable(model, currentUser);
+            modelBinding.modelToReservationAndTable(model,currentUser);
             model.addAttribute("coversError", false);
             model.addAttribute("errorTable", resTableRepository.findTable(reservation.getTable_id()));
             model.addAttribute("isCurrentDate", true);
@@ -93,7 +97,8 @@ public class ReservationController {
         if (!isCurrentDate) {
             model.addAttribute("reservation", new Reservation());
             model.addAttribute("login", currentUser);
-            modelToReservationAndTable(model, currentUser);
+//            modelToReservationAndTable(model, currentUser);
+            modelBinding.modelToReservationAndTable(model,currentUser);
             model.addAttribute("coversError", true);
             model.addAttribute("errorTable", resTableRepository.findTable(reservation.getTable_id()));
             model.addAttribute("isCurrentDate", false);
@@ -105,7 +110,8 @@ public class ReservationController {
         if (!isDuplicate) {
             model.addAttribute("reservation", new Reservation());
             model.addAttribute("login", currentUser);
-            modelToReservationAndTable(model, currentUser);
+//            modelToReservationAndTable(model, currentUser);
+            modelBinding.modelToReservationAndTable(model,currentUser);
             model.addAttribute("coversError", true);
             model.addAttribute("errorTable", resTableRepository.findTable(reservation.getTable_id()));
             model.addAttribute("isCurrentDate", true);
@@ -120,18 +126,10 @@ public class ReservationController {
     }
 
     private void extracted(Model model) {
-        model.addAttribute("arr1", reservationRepository.findForTableId(1));
-        model.addAttribute("arr2", reservationRepository.findForTableId(2));
-        model.addAttribute("arr3", reservationRepository.findForTableId(3));
-        model.addAttribute("arr4", reservationRepository.findForTableId(4));
-        model.addAttribute("arr5", reservationRepository.findForTableId(5));
-        model.addAttribute("arr6", reservationRepository.findForTableId(6));
-        model.addAttribute("arr7", reservationRepository.findForTableId(7));
-        model.addAttribute("arr8", reservationRepository.findForTableId(8));
-        model.addAttribute("arr9", reservationRepository.findForTableId(9));
+        ModelBinding.temp(model, reservationRepository);
     }
 
-    private void modelToReservationAndTable(Model model, Login currentUser) {
+   /* private void modelToReservationAndTable(Model model, Login currentUser) {
         getTable1(model, 1);
         getTable2(model, 2);
         getTable3(model, 3);
@@ -177,5 +175,5 @@ public class ReservationController {
 
     private Model getTable9(Model model, int id) {
         return model.addAttribute("tableNum9", resTableRepository.findTable(id));
-    }
+    }*/
 }

@@ -1,7 +1,5 @@
 package hello.se.RelationTest;
 
-import hello.se.domain.DBdata.WalkIn;
-import hello.se.domain.respository.WalkInRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

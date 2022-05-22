@@ -1,8 +1,6 @@
 package hello.se.RelationTest;
 
-import hello.se.domain.DBdata.Customer;
 import hello.se.domain.DBdata.ResTable;
-import hello.se.domain.respository.CustomerRepository;
 import hello.se.domain.respository.ResTableRepository;
 import hello.se.domain.respository.ReservationRepository;
 import org.assertj.core.api.Assertions;
