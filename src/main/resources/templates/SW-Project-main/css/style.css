@@ -244,7 +244,7 @@ a:focus {
 .user_option .order_online {
     display: inline-block;
     padding: 8px 30px;
-    background-color: #ffbe33;
+    background-color: #e69c00;
     color: #ffffff;
     border-radius: 45px;
     -webkit-transition: all 0.3s;
@@ -1059,4 +1059,16 @@ a:focus {
 /*modify page 버튼 */
 .table_info {
     display: none;
+}
+
+/*여기서 부터 수정된 css*/
+.navbar-brand {
+    font-family: "Lora", 'Sans-serif', cursive;
+}
+
+.footer_section h4,
+.footer_section .footer-logo {
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-family: "Lora", 'Sans-serif', cursive;
 }

@@ -20,7 +20,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -72,7 +75,7 @@ public class modifyController {
     @PostMapping("/modify/{key}")
     public String modifyInfo(@PathVariable Long key, @ModelAttribute Reservation reservation,
                              @ModelAttribute ModifyForm modifyForm, HttpServletRequest request,
-                             RedirectAttributes redirectAttributes, Model model) {
+                             RedirectAttributes redirectAttributes, Model model, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         Login currentUser = (Login) session.getAttribute("user");
         reservation.setLoginKey(currentUser.getKey());

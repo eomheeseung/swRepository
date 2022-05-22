@@ -16,7 +16,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @Slf4j
@@ -32,21 +38,29 @@ public class LoginController {
 
     @PostMapping("/login/enter")
     public String enterLogin(@Validated @ModelAttribute("loginValidation") LoginValidationForm validationForm,
-                             RedirectAttributes redirectAttributes, HttpServletRequest request) {
+                             RedirectAttributes redirectAttributes, HttpServletRequest request,
+                             HttpServletResponse response) throws IOException {
         Login currentUser = loginService.inspectLogin(validationForm);
         HttpSession session = request.getSession();
 
-        if (currentUser == null) {
-            log.info("login fail");
-            return "redirect:/login";
+        List<Login> all = loginRepository.findAll(validationForm.getId());
+
+        Login target = all.stream()
+                .filter(l -> l.getId().equals(validationForm.getId()) && l.getPassword().equals(validationForm.getPassword()))
+                .findAny().orElse(null);
+
+        if (target == null) {
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script language = 'javascript'>");
+            out.println("alert('가입된 정보가 없습니다. 다시 입력해주세요.'); location.href='/login'; ");
+            out.println("</script>");
+            out.flush();
+            out.close();
         }
 
         redirectAttributes.addAttribute("key", currentUser.getKey());
         session.setAttribute("user", currentUser);
-
-        if (currentUser.getKey() == 1) {
-            return "redirect:/admin/{key}";
-        }
 
         log.info("login success");
 

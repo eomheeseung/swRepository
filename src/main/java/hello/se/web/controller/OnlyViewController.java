@@ -46,7 +46,7 @@ public class OnlyViewController {
         return "SW-Project-main/menu";
     }
 
-    @GetMapping("/book")
+    /*@GetMapping("/book")
     public String bookView(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         Login currentUser = (Login) session.getAttribute("user");
@@ -54,7 +54,7 @@ public class OnlyViewController {
         model.addAttribute("login", currentUser);
         log.info("book page");
         return "SW-Project-main/book";
-    }
+    }*/
 
     @GetMapping("/about")
     public String aboutView() {
