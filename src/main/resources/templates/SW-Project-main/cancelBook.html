@@ -246,9 +246,9 @@
                     <form action="" th:action="@{|/cancel/${login.key}|}" th:method="post" th:object="${cancelForm}">
                         <div>
                             <div>
-                                <div style="color: blue"><p>취소할 예약의 리스트 번호를 입력해주세요.</p></div>
+                                <div style="color: blue"><p>취소할 예약의 예약자명을 입력해주세요.</p></div>
                                 <input type="text" class="form-control" placeholder="예약자의 이름을 적어주세요." th:field="${cancelForm.cancelName}">
-                                <div style="color: blue"><p>취소할 예약의 리스트 번호를 입력해주세요.</p></div>
+                                <div style="color: blue"><p>취소할 예약의 예약자 전화번호를 입력해주세요.</p></div>
                                 <input type="text" class="form-control" placeholder="예약자의 전화번호를 적어주세요" th:field="${cancelForm.cancelPhoneNumber}">
                             </div>
                             <div class="btn_box" style="padding: 0 0 35px 0">

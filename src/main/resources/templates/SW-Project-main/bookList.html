@@ -221,7 +221,7 @@
                 </tr>
 
                 <tr th:each="book : ${list}">
-                    <th scope="row" th:text="${bookStat.count}">3</th>
+                    <th scope="row" th:text="${book.oid}">3</th>
                     <td th:text="${book.name}">장현석</td>
                     <td th:text="${book.table_id}">1</td>
                     <td th:text="${book.phoneNumber}">010-1111-2222</td>
