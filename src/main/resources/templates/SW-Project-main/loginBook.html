@@ -44,38 +44,12 @@
           th:href="@{~/css/responsive.css}"
           rel="stylesheet"/>
 
-    <!--<script th:inline="javascript">
-        let tableNum = document.getElementById('table_id');
-        let covers = document.getElementById('covers');
-        let tableCovers;
-        function coverError() {
-            if (tableNum == 1 || tableNum == 2 || tableNum == 3) {
-                tableCovers = 2;
-            }else if (tableNum == 4 || tableNum ==5 || tableNum == 6) {
-                tableCovers = 3;
-            } else if (tableNum == 7 || tableNum == 8 || tableNum == 9) {
-                tableCovers = 4;
-            }
-        }
-        function print() {
-            coverError();
-            if (covers > tableCovers) {
-                alert("인원 수는 " + tableCovers + "를 초과할 수 없습니다.");
-            }
-        }
-        bbtn = document.getElementById("res_btn");
-        bbtn.addEventListener("click", function() {
-            print()
-        });
-    </script>-->
-
     <style>
         /* 추가코드 */
         /* 유저 리스트에서 변경 창 테이블 css */
         .mod_table_container {
             padding-top: 5px;
             padding-bottom: 10px;
-            border-radius: 100%;
         }
 
         /* user userModify 버튼 컨테이너*/
@@ -85,14 +59,16 @@
 
         /* 버튼별 padding*/
         .mod_btn_padding {
+            padding-top: 30px;
             padding-left: 15px;
+            padding-bottom: 30px;
         }
 
         /* button 사이즈 */
         .mod_btn_size {
-            height: 70px;
-            width: 70px;
-            border-radius: 100%;
+            height: 120px;
+            width: 120px;
+            font-size: 30px;
         }
 
         /* user modify에서 버튼 tag시 정보 출력 */
@@ -100,7 +76,9 @@
             display: none;
             position:absolute;
         }
-
+        .mod_btn{
+            border-radius: 10%;
+        }
         .mod_btn:hover > .mod_table_info{
             border: 3px solid black;
             background-color:white;
@@ -140,6 +118,7 @@
             transition: all 0.3s;
             border: none;
         }
+
     </style>
 </head>
 
@@ -306,7 +285,7 @@
                         <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                             <div class="btn-group mr-2" role="group" aria-label="First group">
                                 <div class="mod_btn_padding">
-                                    <button type="button" style="background-color:#3498DB"
+                                    <button type="button" style="background-color:#C96B34"
                                             class="btn btn-secondary mod_btn_size mod_btn">1
                                         <div class="mod_table_info">
                                             <span th:text="'앉을 수 있는 인원: ' + ${tableNum1.covers}+ '명'"
@@ -322,7 +301,7 @@
                             </div>
                             <div class="btn-group mr-2" role="group" aria-label="First group">
                                 <div class="mod_btn_padding">
-                                    <button type="button" style="background-color:#3498DB"
+                                    <button type="button" style="background-color:#C96B34"
                                             class="btn btn-secondary mod_btn_size mod_btn">2
                                         <div class="mod_table_info">
                                             <span th:text="'앉을 수 있는 인원: ' + ${tableNum2.covers}+ '명'"
@@ -338,7 +317,7 @@
                             </div>
                             <div class="btn-group mr-2" role="group" aria-label="First group">
                                 <div class="mod_btn_padding">
-                                    <button type="button" style="background-color:#3498DB"
+                                    <button type="button" style="background-color:#C96B34"
                                             class="btn btn-secondary mod_btn_size mod_btn">3
                                         <div class="mod_table_info">
                                             <span th:text="'앉을 수 있는 인원: ' + ${tableNum3.covers}+ '명'"
@@ -358,7 +337,7 @@
                         <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                             <div class="btn-group mr-2" role="group" aria-label="First group">
                                 <div class="mod_btn_padding">
-                                    <button type="button" style="background-color:#3498DB"
+                                    <button type="button" style="background-color:#C96B34"
                                             class="btn btn-secondary mod_btn_size mod_btn">4
                                         <div class="mod_table_info">
                                             <span th:text="'앉을 수 있는 인원: ' + ${tableNum4.covers}+ '명'"
@@ -374,7 +353,7 @@
                             </div>
                             <div class="btn-group mr-2" role="group" aria-label="First group">
                                 <div class="mod_btn_padding">
-                                    <button type="button" style="background-color:#3498DB"
+                                    <button type="button" style="background-color:#C96B34"
                                             class="btn btn-secondary mod_btn_size mod_btn">5
                                         <div class="mod_table_info">
                                             <span th:text="'앉을 수 있는 인원: ' + ${tableNum5.covers}+ '명'"
@@ -390,7 +369,7 @@
                             </div>
                             <div class="btn-group mr-2" role="group" aria-label="First group">
                                 <div class="mod_btn_padding">
-                                    <button type="button" style="background-color:#3498DB"
+                                    <button type="button" style="background-color:#C96B34"
                                             class="btn btn-secondary mod_btn_size mod_btn">6
                                         <div class="mod_table_info">
                                             <span th:text="'앉을 수 있는 인원: ' + ${tableNum6.covers}+ '명'"
@@ -410,7 +389,7 @@
                         <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                             <div class="btn-group mr-2" role="group" aria-label="First group">
                                 <div class="mod_btn_padding">
-                                    <button type="button" style="background-color:#3498DB"
+                                    <button type="button" style="background-color:#C96B34"
                                             class="btn btn-secondary mod_btn_size mod_btn">7
                                         <div class="mod_table_info">
                                             <span th:text="'앉을 수 있는 인원: ' + ${tableNum7.covers}+ '명'"
@@ -426,7 +405,7 @@
                             </div>
                             <div class="btn-group mr-2" role="group" aria-label="First group">
                                 <div class="mod_btn_padding">
-                                    <button type="button" style="background-color:#3498DB"
+                                    <button type="button" style="background-color:#C96B34"
                                             class="btn btn-secondary mod_btn_size mod_btn">8
                                         <div class="mod_table_info">
                                             <span th:text="'앉을 수 있는 인원: ' + ${tableNum8.covers}+ '명'"
@@ -442,7 +421,7 @@
                             </div>
                             <div class="btn-group mr-2" role="group" aria-label="First group">
                                 <div class="mod_btn_padding">
-                                    <button type="button" style="background-color:#3498DB"
+                                    <button type="button" style="background-color:#C96B34"
                                             class="btn btn-secondary mod_btn_size mod_btn">9
                                         <div class="mod_table_info">
                                             <span th:text="'앉을 수 있는 인원: ' + ${tableNum9.covers}+ '명'"

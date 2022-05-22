@@ -4,22 +4,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CancelForm {
-    private String cancelName;
-    private String cancelPhoneNumber;
+    private Integer id;
 
-    public String getCancelName() {
-        return cancelName;
+    public Integer getId() {
+        return id;
     }
 
-    public void setCancelName(String cancelName) {
-        this.cancelName = cancelName;
-    }
-
-    public String getCancelPhoneNumber() {
-        return cancelPhoneNumber;
-    }
-
-    public void setCancelPhoneNumber(String cancelPhoneNumber) {
-        this.cancelPhoneNumber = cancelPhoneNumber;
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

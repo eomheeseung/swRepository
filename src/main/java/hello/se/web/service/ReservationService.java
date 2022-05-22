@@ -27,10 +27,11 @@ public class ReservationService {
         }
     }
 
-    public Optional<Reservation> findOneForCancel(CancelForm cancelForm) {
-        List<Reservation> list = reservationRepository.findCancelForName(cancelForm.getCancelName());
 
-        return list.stream().filter(r -> r.getPhoneNumber().equals(cancelForm.getCancelPhoneNumber()))
+    public Optional<Reservation> findOneForCancel(CancelForm cancelForm) {
+        List<Reservation> list = reservationRepository.findCancelForKey(cancelForm.getId());
+
+        return list.stream().filter(r -> r.getOid().equals(cancelForm.getId()))
                 .findFirst();
     }
 }

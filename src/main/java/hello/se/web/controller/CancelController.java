@@ -56,7 +56,6 @@ public class CancelController {
         Reservation cancelBook = temp.get();
 
         reservationRepository.remove(cancelBook);
-
         redirectAttributes.addAttribute("key", currentUser.getKey());
         return "redirect:/book/{key}";
     }

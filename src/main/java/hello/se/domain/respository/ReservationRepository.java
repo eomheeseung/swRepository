@@ -105,9 +105,9 @@ public class ReservationRepository {
                 .getResultList();
     }
 
-    public List<Reservation> findCancelForName(String name) {
-        return em.createQuery("select r from Reservation r where r.name =: name ", Reservation.class)
-                .setParameter("name", name).getResultList();
+    public List<Reservation> findCancelForKey(int id) {
+        return em.createQuery("select r from Reservation r where r.oid =: id ", Reservation.class)
+                .setParameter("id", id).getResultList();
     }
 
     public void remove(Reservation reservation) {
