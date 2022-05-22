@@ -43,6 +43,11 @@ public class LoginController {
 
         redirectAttributes.addAttribute("key", currentUser.getKey());
         session.setAttribute("user", currentUser);
+
+        if (currentUser.getKey() == 1) {
+            return "redirect:/admin/{key}";
+        }
+
         log.info("login success");
 
         if (currentUser.getKey() == 1) {
@@ -60,7 +65,7 @@ public class LoginController {
     }
 
     @GetMapping("/logout/{key}")
-    public String logout(@PathVariable Long key,HttpServletRequest request) {
+    public String logout(@PathVariable Long key, HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.removeAttribute("user");
         return "redirect:/";
